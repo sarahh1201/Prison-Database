@@ -34,12 +34,13 @@ string getStaffInfo(bool canGetStaffInfo, int staffIndex, int fieldIndex)//staff
 
 	return data;
 }
-void setStaffInfo(bool canSetStaffInfo, int staffIndex, int fieldIndex)
+void setStaffInfo(bool canSetStaffInfo, int staffIndex, int fieldIndex, string newData)
 {
 	vector<string> v1;//vector for first half of data
 	string temp;//string to put input into vector
 	vector<string> v2;//vector for second half of data
 
+//Save all of the data into vectors to update it
 	//save first half of data to a vector
 	ifstream input("Staff_Data.txt");
 	for (int i = 0; i <= staffIndex; i = i + maxIndices)//iterate for every row until the staff index is reached
@@ -73,6 +74,21 @@ void setStaffInfo(bool canSetStaffInfo, int staffIndex, int fieldIndex)
 	input.close();
 
 
+	//recreate staff data file
+	ofstream output;
+	output.open("Staff_Data.txt");
+	for (int i = 0; i < v1.size(); i++)//put all of v1 back into the staff data file
+	{
+		temp = v1.at(i);
+		output << temp;
+	}
+	output << newData;//put the new info into the file
+	for (int i = 0; i < v2.size(); i++)//put all of v2 back into the end staff data file
+	{
+		temp = v2.at(i);
+		output << temp;
+	}
+	output.close();
 }
 
 //login functions NOT COMPLETE, UNCLEAR WHAT END GOAL IS
