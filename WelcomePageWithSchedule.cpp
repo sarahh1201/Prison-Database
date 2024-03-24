@@ -11,6 +11,8 @@ void welcome();
 void prisonerView(string& user);
 void staffView(string& user);
 void managerView(string& user);
+string getCurrentDateTime();
+void displaySchedule(const string& filename);
 
 int main()
 {
@@ -165,6 +167,31 @@ void prisonerView(string& user)
             clearScreen();
             string filename = "InmateSchedule.txt";
             displaySchedule(filename);
+
+             cout << "Enter 1 to go back: ";
+
+                int exit;
+                cin>>exit;
+                if(exit==1)
+                {
+                    clearScreen();
+                    prisonerView(user);
+                }
+                while(exit!=1) 
+                {
+                    clearScreen();
+                    displaySchedule(filename);
+                    cout << "Invalid input!" <<endl;
+                    cout << "Enter 1 to go back: ";
+                    cin >> exit;
+                    
+                    if(exit==1)
+                {
+                    clearScreen();
+                    prisonerView(user);
+                }
+                }
+
             break;
         }
         case 3: //Logout
@@ -183,7 +210,7 @@ void staffView(string& user) {
     int blocks[2][4] = {{65,   66,   67,  68},
                         {1000, 1000, 700, 900}};
 
-    cout << "No. Prisoners: " << prisoners << endl; //Number of prisoners
+    cout << "\nNo. Prisoners: " << prisoners << endl; //Number of prisoners
 
     //Cell Block Information
     cout << "\nCell Block Capacities" << endl;
@@ -219,6 +246,31 @@ void staffView(string& user) {
             clearScreen();
             string filename = "StaffSchedule.txt";
             displaySchedule(filename);
+
+             cout << "Enter 1 to go back: ";
+
+                int exit;
+                cin>>exit;
+                if(exit==1)
+                {
+                    clearScreen();
+                    staffView(user);
+                }
+                while(exit!=1) 
+                {
+                    clearScreen();
+                    displaySchedule(filename);
+                    cout << "Invalid input!" <<endl;
+                    cout << "Enter 1 to go back: ";
+                    cin >> exit;
+                    
+                    if(exit==1)
+                {
+                    clearScreen();
+                    staffView(user);
+                }
+                }
+
             break;
         }
             case 3: //Logout
@@ -237,7 +289,7 @@ void staffView(string& user) {
         int blocks[2][4] = {{65,   66,   67,  68},
                             {1000, 1000, 700, 900}};
 
-        cout << "No. Prisoners: " << prisoners << endl; //Number of prisoners
+        cout << "\nNo. Prisoners: " << prisoners << endl; //Number of prisoners
 
         //Cell Block Information
         cout << "\nCell Block Capacities" << endl;
@@ -287,6 +339,30 @@ void staffView(string& user) {
                 clearScreen();
                 string filename = "ManagerSchedule.txt";
                 displaySchedule(filename);
+                cout << "Enter 1 to go back: ";
+
+                int exit;
+                cin>>exit;
+                if(exit==1)
+                {
+                    clearScreen();
+                    managerView(user);
+                }
+                while(exit!=1) 
+                {
+                    clearScreen();
+                    displaySchedule(filename);
+                    cout << "Invalid input!" <<endl;
+                    cout << "Enter 1 to go back: ";
+                    cin >> exit;
+                    
+                    if(exit==1)
+                {
+                    clearScreen();
+                    managerView(user);
+                }
+                }
+
                 break;
             }
                 case 5: //Logout of account and returns user back to welcome page
