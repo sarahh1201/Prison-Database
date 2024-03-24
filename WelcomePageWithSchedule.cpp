@@ -1,4 +1,4 @@
-e "Customize.h"
+#include "Customize.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -163,7 +163,7 @@ void prisonerView(string& user)
         case 2: //View schedule
         {
             clearScreen();
-            string filename = "ManagerSchedule.txt";
+            string filename = "InmateSchedule.txt";
             displaySchedule(filename);
             break;
         }
@@ -217,7 +217,7 @@ void staffView(string& user) {
         case 2: //View schedule
         {
             clearScreen();
-            string filename = "ManagerSchedule.txt";
+            string filename = "StaffSchedule.txt";
             displaySchedule(filename);
             break;
         }
