@@ -11,8 +11,10 @@ void clearScreen() {
     #endif
 }
 
-void colourize(const string& text, int colorCode) {
-    cout << "\033[" << colorCode << "m" << text << "\033[0m";
+//colourCode = 34 for blue 
+
+void colourize(const string& text, int colourCode) {
+    cout << "\033[" << colourCode << "m" << text << "\033[0m";
 }
 
 #endif

@@ -267,8 +267,8 @@ void managerView(string &user) {
             clearScreen();
                 string filename = "ManagerSchedule.txt";
                 displaySchedule(filename);
-                cout << "Enter 1 to go back: ";
 
+                cout << "Enter 1 to go back: ";
                 int exit;
                 cin>>exit;
             
@@ -290,12 +290,46 @@ void managerView(string &user) {
             }
             case 2: //Personal info
             {
+                //Personal info function
+                cout << "Enter 1 to go back: ";
+                int exit;
+                cin>>exit;
+            
+                while(exit!=1) 
+                {
+                    clearScreen();
+                    cout << "Invalid input!" <<endl;
+                    cout << "Enter 1 to go back: ";
+                    cin >> exit;
+                }
+                if(exit==1)
+                {
+                    clearScreen();
+                    managerView(user);
+                }
                 break;
             }
             case 3: //Prisoner info
             {
-                clearScreen();
                 //Call prisoner function
+
+                cout << "Enter 1 to go back: ";
+                int exit;
+                cin>>exit;
+            
+                while(exit!=1) 
+                {
+                    clearScreen();
+                    cout << "Invalid input!" <<endl;
+                    cout << "Enter 1 to go back: ";
+                    cin >> exit;
+                }
+                if(exit==1)
+                {
+                    clearScreen();
+                    managerView(user);
+                }
+                
                 break;
             }
             case 4: // Manage People
@@ -315,14 +349,46 @@ void managerView(string &user) {
                 {
                 case 1:
                 {
-                    clearScreen();
                     // Prisoners
+
+                    cout << "Enter 1 to go back: ";
+                int exit;
+                cin>>exit;
+            
+                while(exit!=1) 
+                {
+                    clearScreen();
+                    cout << "Invalid input!" <<endl;
+                    cout << "Enter 1 to go back: ";
+                    cin >> exit;
+                }
+                if(exit==1)
+                {
+                    clearScreen();
+                    managerView(user);
+                }
                    break; 
                 }
                 case 2:
                 {
-                    clearScreen();
                     //Staff
+
+                    cout << "Enter 1 to go back: ";
+                int exit;
+                cin>>exit;
+            
+                while(exit!=1) 
+                {
+                    clearScreen();
+                    cout << "Invalid input!" <<endl;
+                    cout << "Enter 1 to go back: ";
+                    cin >> exit;
+                }
+                if(exit==1)
+                {
+                    clearScreen();
+                    managerView(user);
+                }
                     break;
                 }
                 
@@ -333,7 +399,7 @@ void managerView(string &user) {
                     break;
                 }
                 }
-                
+
                 //Call edit function
                 break;
             }
