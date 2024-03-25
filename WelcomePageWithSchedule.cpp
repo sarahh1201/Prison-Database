@@ -94,7 +94,7 @@ void prisonerView(string& user)
 
     //Manager selection menu
     cout << "\nSelect an option: " <<endl;
-    cout << "\n1. Prisoner info";
+    cout << "1. Prisoner info";
     cout << "\n2. View schedule"
          << "\n3. Logout"
          << endl;
@@ -115,6 +115,23 @@ void prisonerView(string& user)
         {
             clearScreen();
             //Function
+
+            cout << "Enter 1 to go back: ";
+            int exit;
+            cin>>exit;
+        
+                while(exit!=1) 
+                {
+                    clearScreen();
+                    cout << "Invalid input!" <<endl;
+                    cout << "Enter 1 to go back: ";
+                    cin >> exit;
+                }
+                if(exit==1)
+                {
+                    clearScreen();
+                    prisonerView(user);
+                }
             break;
         }
         case 2: //View schedule
@@ -124,9 +141,8 @@ void prisonerView(string& user)
             displaySchedule(filename);
 
              cout << "Enter 1 to go back: ";
-
-                int exit;
-                cin>>exit;
+             int exit;
+             cin>>exit;
         
                 while(exit!=1) 
                 {
@@ -170,7 +186,7 @@ void staffView(string& user) {
 
     //Manager selection menu
     cout << "\nSelect an option: " << endl;
-    cout << "\n1. Prisoner info"
+    cout << "1. Prisoner info"
          << "\n2. View Schedule"
          << "\n3. Logout"
          << endl;
@@ -189,6 +205,23 @@ void staffView(string& user) {
         {
             clearScreen();
             //Call prisoner function
+            cout << "Enter 1 to go back: ";
+            int exit;
+            cin>>exit;
+            
+                while(exit!=1) 
+                {
+                    clearScreen();
+                    cout << "Invalid input!" <<endl;
+                    cout << "Enter 1 to go back: ";
+                    cin >> exit;
+                }
+
+                    if(exit==1)
+                {
+                    clearScreen();
+                    staffView(user);
+                }
             break;
         }
         case 2: //View schedule
@@ -197,10 +230,9 @@ void staffView(string& user) {
             string filename = "StaffSchedule.txt";
             displaySchedule(filename);
 
-             cout << "Enter 1 to go back: ";
-
-                int exit;
-                cin>>exit;
+            cout << "Enter 1 to go back: ";
+            int exit;
+            cin>>exit;
             
                 while(exit!=1) 
                 {
@@ -249,7 +281,7 @@ void managerView(string &user) {
              << "\n2. Personal info"
              << "\n3. Prisoner info"
              << "\n4. Manage People"
-             << "\n6. Logout"
+             << "\n5. Logout"
              << endl;
 
         cout << "Option: ";
@@ -349,9 +381,10 @@ void managerView(string &user) {
                 {
                 case 1:
                 {
+                    clearScreen();
                     // Prisoners
 
-                    cout << "Enter 1 to go back: ";
+                cout << "Enter 1 to go back: ";
                 int exit;
                 cin>>exit;
             
@@ -371,9 +404,10 @@ void managerView(string &user) {
                 }
                 case 2:
                 {
+                    clearScreen();
                     //Staff
 
-                    cout << "Enter 1 to go back: ";
+                cout << "Enter 1 to go back: ";
                 int exit;
                 cin>>exit;
             
