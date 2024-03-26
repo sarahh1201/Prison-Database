@@ -10,38 +10,6 @@ User::User()
 	userID = "erroruserID";
 	userIndex = 0;
 }
-//basic constructor, checks if user has permission to create a new user
-/*User& User::createUser(bool canCreateUser)
-{
-	try {
-	return User();
-   }
-	//catch()ACCESS ERROR: CANNOT CREATE USER
-}*/
-//constructor with inputted parameters
-/*User User::createUser(bool canCreateUser, string firstName, string lastName, string govID, string userID)
-{
-	//try{
-	this->firstname = firstName;
-	this->lastname = lastName;
-	this->govID = govID;
-	this->userID = userID;
-	//}
-	//catch() ACCESS ERROR: CANNOT CREATE USER
-}*/
-
-//destructor
-User::~User()
-{
-
-}
-//delete a user profile
-void User::deleteUser(bool canCreateUser)
-{
-
-}
-
-
 
 void User::save()//incomplete
 {
