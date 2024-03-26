@@ -1,48 +1,69 @@
-#ifndef INMATE_H
-#define INMATE_H
-#include <string>
-#include "User.h"
+#include "Inmate.h"
 
-using namespace std;
-
-const int inmateMaxIndices = 8;
-
-class Inmate : public User
+//accessors
+string Inmate::getLawyerName()
 {
-protected:
-	string lawyerName;
-	string sentenceLength;
-	string probationDate;
-	string incarDate;//incaceration date
-	int cellNum;
-	char cellBlock;
-	string roommateID;
-	string scheduleGroup;
-	//bool privileges[permissionsMax];//inmate specific privileges
+	return lawyerName;
+}
+string Inmate::getSentenceLength()
+{
+	return sentenceLength;
+}
+string Inmate::getProbationDate()
+{
+	return probationDate;
+}
+string Inmate::getIncarDate()//incaceration date
+{
+	return incarDate;
+}
+int Inmate::getCellNum()
+{
+	return cellNum;
+}
+char Inmate::getCellBlock()
+{
+	return cellBlock;
+}
+string Inmate::getRoommateID()
+{
+	return roommateID;
+}
+string Inmate::getScheduleGroup()
+{
+	return scheduleGroup;
+}
 
-public:
-	//Inmate(bool canCreateInmate);
-	//Immate(bool canCreateInmate, string ) constructors with all parameters will be coded last to prevent unecessary programming
-	//~Inmate();
-	//void deleteInmate(bool canCreateInmate);
-	//string remainingSentence();//permissions bool name required
-
-	string getLawyerName();
-	string getSentenceLength();
-	string getProbationDate();
-	string getIncarDate();//incarceration date
-	int getCellNum();
-	char getCellBlock();
-	string getRoommateID();
-	string getScheduleGroup();
-
-	void setLawyerName(string lawyerName);
-	void setSentenceLength(string sentenceLength);
-	void setProbationDate(string probationDate);
-	void setIncarDate(string incarDate);//incarceration date
-	void setCellNum(int cellNum);
-	void setCellBlock(char cellBlock);
-	void setRoommateID(string roommateID);
-	void setScheduleGroup(string scheduleGroup);
-};
-#endif
+//mutators
+void Inmate::setLawyerName(string lawyerName)
+{
+	this->lawyerName = lawyerName;
+}
+void Inmate::setSentenceLength(string sentenceLength)
+{
+	this->sentenceLength = sentenceLength;
+}
+void Inmate::setProbationDate(string probationDate)
+{
+	this->probationDate = probationDate;
+}
+void Inmate::setIncarDate(string incarDate)//incaceration date
+{
+	this->incarDate = incarDate;
+}
+void Inmate::setCellNum(int cellNum)
+{
+	this->cellNum = cellNum;
+}
+void Inmate::setCellBlock(char cellBlock)
+{
+	this->cellBlock = cellBlock;
+}
+void Inmate::setRoommateID(string roommateID)
+{
+	this->roommateID = roommateID;
+}
+void Inmate::setScheduleGroup(string scheduleGroup)
+{
+	this->scheduleGroup = scheduleGroup;
+}
