@@ -1,4 +1,5 @@
 #include "User.h"
+#include "EntryException.h"
 
 User::User()
 {
@@ -86,5 +87,11 @@ void User::setGovID(string govID)
 void User::setUserID(string userID)
 {
 	this->userID = userID;
+}
+
+void User::Check(string entry)
+{
+	if(entry!=entry) 
+		throw EntryException(entry);
 }
 

@@ -7,7 +7,7 @@ using namespace std;
 class RangeException: public logic_error
 {
 public:
-    RangeException(int range): logic_error("Invalid entry") 
+    RangeException(int range): logic_error("Invalid entry") //Index out of range
     {
         this->range=range;
     }

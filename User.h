@@ -51,5 +51,8 @@ public:
 	void setUsername(string userName);
 	void setGovID(string govID);
 	void setUserID(string userID);
+
+private:
+	void Check(string entry); //Check password
 };
 #endif

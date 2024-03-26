@@ -1,6 +1,7 @@
 #ifndef USERDATABASEFUNCTIONS_H
 #define USERDATABASEFUNCTIONS_H
 #include "User.h"
+#include "RangeException.h"
 #include <sstream>
 
 
