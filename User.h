@@ -26,18 +26,15 @@ protected:
 	//constructor
 	User();
 	//destructor
-	~User();
+	~User()
+	{
+	
+	
+	}
 
 public:
 
-	//calls on constructor after checking if user has permission to create a new user
-	//User& createUser(bool canCreateUser);
-	//calls on constructor with inputted parameters
-	//User createUser(bool canCreateUser, string firstName, string lastName, string govID, string userID);
 	void save();//save updated user data to the files
-
-	//delete a user profile
-	void deleteUser(bool canCreateUser);
 
 	//accessors
 	string getFirstname();
