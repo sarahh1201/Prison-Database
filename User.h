@@ -5,8 +5,10 @@
 #include <vector>
 using namespace std;
 
-const int maxIndices = 8;//the number of data fields per user
-const int permissionsMax = 10;
+
+const int permissionsMax = 10;//permissions bool size
+const int maxIndices = 5;//max number of columns per user in text file
+const int maxUsernameFileIndex = 3;//max number of columns in username files
 
 class User
 {
@@ -20,17 +22,18 @@ protected:
 	string userID;
 	int userIndex;
 	//array of system permissions
-	bool permissions[permissionsMax];
+	//bool permissions[permissionsMax];
 	//constructor
 	User();
 	//destructor
 	~User();
+
 public:
 
 	//calls on constructor after checking if user has permission to create a new user
-	User& createUser(bool canCreateUser);
+	//User& createUser(bool canCreateUser);
 	//calls on constructor with inputted parameters
-	User createUser(bool canCreateUser, string firstName, string lastName, string govID, string userID);
+	//User createUser(bool canCreateUser, string firstName, string lastName, string govID, string userID);
 	void save();//save updated user data to the files
 
 	//delete a user profile
@@ -42,6 +45,8 @@ public:
 	string getUsername();
 	string getGovID();
 	string getUserID();
+	string getPassword();
+	int getUserIndex();
 
 	//mutators
 	void setFirstname(string firstName);
@@ -49,8 +54,5 @@ public:
 	void setUsername(string userName);
 	void setGovID(string govID);
 	void setUserID(string userID);
-
-private:
-	string getPassword();
-	};
+};
 #endif
