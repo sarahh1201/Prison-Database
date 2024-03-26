@@ -1,5 +1,26 @@
 #include "Inmate.h"
 
+Inmate::Inmate(bool canCreateStaff, int userIndex, string userData[], string inmateData[])
+{
+		//inmate fields
+		lawyerName = inmateData[1];
+		sentenceLength = inmateData[2];
+		probationDate = inmateData[3];
+		incarDate = inmateData[4];//incaceration date
+		cellNum = inmateData[5];
+		cellBlock = inmateData[6];
+		roommateID = inmateData[7];
+		scheduleGroup = inmateData[8];
+		//user fields
+		this->userIndex = userIndex;
+		firstname = userData[1];
+		lastname = userData[2];
+		username = "username";//default settings, if changed then username will be updated
+		password = "password";//default setting, if changed then username will be updated
+		govID = userData[3];
+		userID = userData[4];
+}
+
 //accessors
 string Inmate::getLawyerName()
 {
@@ -17,11 +38,11 @@ string Inmate::getIncarDate()//incaceration date
 {
 	return incarDate;
 }
-int Inmate::getCellNum()
+string Inmate::getCellNum()
 {
 	return cellNum;
 }
-char Inmate::getCellBlock()
+string Inmate::getCellBlock()
 {
 	return cellBlock;
 }
@@ -51,11 +72,11 @@ void Inmate::setIncarDate(string incarDate)//incaceration date
 {
 	this->incarDate = incarDate;
 }
-void Inmate::setCellNum(int cellNum)
+void Inmate::setCellNum(string cellNum)
 {
 	this->cellNum = cellNum;
 }
-void Inmate::setCellBlock(char cellBlock)
+void Inmate::setCellBlock(string cellBlock)
 {
 	this->cellBlock = cellBlock;
 }
