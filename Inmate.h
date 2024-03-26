@@ -5,6 +5,8 @@
 
 using namespace std;
 
+const int inmateMaxIndices = 8;
+
 class Inmate : public User
 {
 protected:
@@ -15,14 +17,32 @@ protected:
 	int cellNum;
 	char cellBlock;
 	string roommateID;
-	char scehduleGroup;
-	bool privileges[];//inmate specific privileges
+	string scheduleGroup;
+	//bool privileges[permissionsMax];//inmate specific privileges
 
 public:
-	Inmate(bool canCreateInmate);
+	//Inmate(bool canCreateInmate);
 	//Immate(bool canCreateInmate, string ) constructors with all parameters will be coded last to prevent unecessary programming
-	~Inmate();
-	void deleteInmate(bool canCreateInmate);
-	string remainingSentence();//permissions bool name required
+	//~Inmate();
+	//void deleteInmate(bool canCreateInmate);
+	//string remainingSentence();//permissions bool name required
+
+	string getLawyerName();
+	string getSentenceLength();
+	string getProbationDate();
+	string getIncarDate();//incarceration date
+	int getCellNum();
+	char getCellBlock();
+	string getRoommateID();
+	string getScheduleGroup();
+
+	void setLawyerName(string lawyerName);
+	void setSentenceLength(string sentenceLength);
+	void setProbationDate(string probationDate);
+	void setIncarDate(string incarDate);//incarceration date
+	void setCellNum(int cellNum);
+	void setCellBlock(char cellBlock);
+	void setRoommateID(string roommateID);
+	void setScheduleGroup(string scheduleGroup);
 };
 #endif
