@@ -2,34 +2,33 @@
 
 User::User()
 {
-	string firstName = "firstname";
-	string lastName="lastname";
-	string userName="username";
-	string password="7777";
-	string govID="govID";
-	string userID="userID";
-	int userIndex = 0;
+	firstname = "errorfirstname";
+	lastname = "errorlastname";
+	username = "errorusername";
+	password = "7777";
+	govID = "errorgovID";
+	userID = "erroruserID";
+	userIndex = 0;
 }
 //basic constructor, checks if user has permission to create a new user
-User& User::createUser(bool canCreateUser)
+/*User& User::createUser(bool canCreateUser)
 {
-	//try {
-
-	return User()
-   //}
+	try {
+	return User();
+   }
 	//catch()ACCESS ERROR: CANNOT CREATE USER
-}
+}*/
 //constructor with inputted parameters
-User User::createUser(bool canCreateUser, string firstName, string lastName, string govID, string userID)
+/*User User::createUser(bool canCreateUser, string firstName, string lastName, string govID, string userID)
 {
 	//try{
-	this->firstName = firstName;
-	this->lastName = lastName;
+	this->firstname = firstName;
+	this->lastname = lastName;
 	this->govID = govID;
 	this->userID = userID;
 	//}
 	//catch() ACCESS ERROR: CANNOT CREATE USER
-}
+}*/
 
 //destructor
 User::~User()
@@ -42,11 +41,13 @@ void User::deleteUser(bool canCreateUser)
 
 }
 
+
+
 void User::save()//incomplete
 {
 	string data;
 
-	ifstream input("Staff_Data.txt");
+	/*ifstream input("Staff_Data.txt");
 	for (int i = 0; i <= userIndex; i = i + maxIndices)//iterate for every row until the staff index is reached
 	{
 		string unused;//throwaway string to iterate inputs
@@ -62,7 +63,7 @@ void User::save()//incomplete
 			input >> unused;
 	}
 	input.close();
-
+	*/
 
 	ofstream output;
 	output.open("Staff_Data.txt", ios::ate);//opens file to output onto it, appends to end of file
@@ -91,6 +92,10 @@ string User::getUserID()
 string User::getPassword()
 {
 	return password;
+}
+int User::getUserIndex()
+{
+	return userIndex;
 }
 
 //mutators
