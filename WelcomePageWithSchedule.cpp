@@ -90,8 +90,6 @@ void prisonerView(string& user)
     colourize("Welcome ",34), colourize(user,34), colourize("!",34);
     cout << endl;
 
-    //cout << "Welcome " << user << "!" <<endl;
-
     //Manager selection menu
     cout << "\nSelect an option: " <<endl;
     cout << "1. Prisoner info";

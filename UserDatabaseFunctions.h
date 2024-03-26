@@ -5,7 +5,7 @@
 #include <sstream>
 
 
-string getUserInfo(bool canGetUserInfo, int userFileNumber, int memberIndex, int fieldIndex)
+string getUserInfo(/*bool canGetUserInfo,*/ int userFileNumber, int memberIndex, int fieldIndex)
 {
 	string data = "ERROR: NO DATA FOUND (getUserInfo)";//assigned a string to ensure that something is returned
 	//try {

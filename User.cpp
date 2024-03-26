@@ -89,9 +89,9 @@ void User::setUserID(string userID)
 	this->userID = userID;
 }
 
-void User::Check(string entry)
+void User::Check(string entry) //Should be comparing the inputed password to the actual password
 {
-	if(entry!=entry) 
+	if(entry!=entry) //If the password is wrong it would be thrown
 		throw EntryException(entry);
 }
 

@@ -34,6 +34,5 @@ int main()
 	cout << "Username: " << staff1.getUsername() << endl;
 	cout << "Password: " << staff1.getPassword() << endl;
 
-
 	return 0;
 }
