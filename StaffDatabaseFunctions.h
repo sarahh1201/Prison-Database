@@ -205,7 +205,7 @@ void createUsernameFile()
 }
 
 
-//login functions NOT COMPLETE, MAKE A LOGIN FUNCTION AND A FUNCTION TO RETURN THE OBJECT TO ALLOW FOR EXCEPTIONS
+//login functions NOT COMPLETE, MAKE AN EXCEPTION FOR WHEN PASSWORDS DONT MATCH!!
 Staff logInfo(string username, string password)
 {
 	ifstream input("Staff_Usernames.txt");//open the usernames and password file (order of info is index, username, password)
@@ -249,11 +249,7 @@ Staff logInfo(string username, string password)
 	input.close();
 }
 
-//checks for username and password match, then calls on logInfo to create the object
-void login(string username, string password)
-{
 
-}
 
 void logOut(Staff currentStaff)//delete the current object and return to login menu
 {

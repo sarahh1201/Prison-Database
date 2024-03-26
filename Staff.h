@@ -15,11 +15,8 @@ protected:
 
 public:
 	Staff();
-	//Staff(bool canCreateStaff);
-	//Staff(all user data fields);
 	Staff(bool canCreateStaff, int staffIndex, string userData[], string staffData[]);
-	//~Staff();
-	//void deleteStaff(bool canCreateStaff);
+	~Staff(){}
 	string getPosition();
 	string getScheduleGroup();
 

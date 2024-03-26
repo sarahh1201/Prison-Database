@@ -1,29 +1,39 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <vector>
+#include "StaffDatabaseFunctions.h"
+
 using namespace std;
+
+
 
 int main()
 {
-	ifstream input("Staff_Usernames.txt");
-	//look for the username
-	int i = 0;
-	string inUsername;
-	while (getline(input,inUsername))
-	{
-		string inPassword;
-	
-		i++;
-		if (i % 2 == 0)//skip every second entry (the passwords)
-			if (inUsername == username)//if the usernames match
-			{
-				input >> inPassword;//take in the next entry into passwords
-				if (inPassword == password)//if the passwords match
-				{
+	createTextFile();
+	cout << "Text File" << endl;
+	createUsernameFile();
+	cout << "Username File" << endl;
+	createUserFile(0);
+	cout << "User File" << endl;
+	Staff staff1;
+	cout << "Staff object" << endl;
 
-				}
-			}
-	}
-	
+	staff1 = logInfo("name3", "pass3");
+	cout << "Updated Staff Object" << endl;
+
+	cout << "First name: " << staff1.getFirstname() << endl;
+	cout << "Last name: " << staff1.getLastname() << endl;
+
+	cout << "Position: " << staff1.getPosition() << endl;
+	cout << "Schedule: " << staff1.getScheduleGroup() << endl;
+
+	cout << "Gov ID: " << staff1.getGovID() << endl;
+	cout << "User ID: " << staff1.getUserID() << endl;
+	cout << "User Index: " << staff1.getUserIndex() << endl;
+	cout << "Username: " << staff1.getUsername() << endl;
+	cout << "Password: " << staff1.getPassword() << endl;
+
+
 	return 0;
 }

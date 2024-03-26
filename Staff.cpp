@@ -2,7 +2,8 @@
 
 Staff::Staff()
 {
-
+	position="N/A";
+	scheduleGroup="N/A";
 }
 Staff::Staff(bool canCreateStaff, int userIndex, string userData[], string staffData[])
 {

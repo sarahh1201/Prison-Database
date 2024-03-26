@@ -1,3 +1,7 @@
+NON USED FILE JUST CANT DELETE IT
+
+
+/*
 #ifndef STAFFDATABASEFUNCTIONS_H
 #define STAFFDATABASEFUNCTIONS_H
 #include <string>
@@ -260,3 +264,4 @@ void logOut(Staff currentStaff)//delete the current object and return to login m
 
 }
 #endif
+*/
