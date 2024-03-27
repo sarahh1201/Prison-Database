@@ -132,7 +132,7 @@ Inmate inmateLogin(string username, string password)
 
 
 					for (int j = 0; j < maxIndices; j++)
-						userData[j] = getUserInfo(true, 0, index, j);
+						userData[j] = getUserInfo(0, index, j);
 
 
 					for (int j = 0; j < inmateMaxIndices; j++)
