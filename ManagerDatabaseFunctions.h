@@ -147,4 +147,23 @@ Staff logInfo(string username, string password)
 	input.close();
 }
 
+void create(string userData[], vector<string> objectData, string username, string password, string usernameFile, string userFile, string dataFile)
+{
+	string userIndex;
+	ofstream output;
+	output.open(usernameFile, ios::ate);
+	output << userData[0]<<" " << username<<" " << password<< " ";
+	output.close();
+
+	output.open(userFile, ios::ate);
+	for (int i = 0; i < maxIndices; i++)
+		output << userData[i] << " ";
+	output.close();
+
+	output.open(dataFile, ios::ate);
+	for (int i = 0; i < objectData.size(); i++)
+		output << objectData.at(i) << " ";
+	output.close();
+}
+
 #endif
