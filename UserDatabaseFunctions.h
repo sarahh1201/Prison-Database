@@ -122,14 +122,14 @@ void setStaffInfo(/*bool canSetStaffInfo,*/ int userFileNumber, int memberIndex,
 	//recreate staff data file
 	ofstream output;
 	output.open(filename);
-	for (int i = 0; i < v1.size(); i++)//put all of v1 back into the staff data file
+	for (int i = 0; i < static_cast<int>(v1.size()); i++)//put all of v1 back into the staff data file
 	{
 		temp = v1.at(i);
 		output << temp;
 	}
 	output << newData;//put the new info into the file
 	output << ' ';
-	for (int i = 0; i < v2.size(); i++)//put all of v2 back into the end staff data file
+	for (int i = 0; i < static_cast<int>(v2.size()); i++)//put all of v2 back into the end staff data file
 	{
 		temp = v2.at(i);
 		output << temp;
@@ -201,7 +201,7 @@ void createUserFile(int userFileNumber)
 	string temp;
 	ofstream output;
 	output.open(filename);
-	for (int i = 0; i < v1.size(); i++)//put vectors into file
+	for (int i = 0; i < static_cast<int>(v1.size()); i++)//put vectors into file
 	{
 		temp = v1.at(i);
 		output << temp;

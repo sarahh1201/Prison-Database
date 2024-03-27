@@ -89,14 +89,14 @@ void setManagerInfo(bool canSetManagerInfo, int managerIndex, int fieldIndex, st
 	//recreate manager data file
 	ofstream output;
 	output.open("Manager_Data.txt");
-	for (int i = 0; i < v1.size(); i++)//put all of v1 back into the manager data file
+	for (int i = 0; i < static_cast<int>(v1.size()); i++)//put all of v1 back into the manager data file
 	{
 		temp = v1.at(i);
 		output << temp;
 	}
 	output << newData;//put the new info into the file
 	output << ' ';
-	for (int i = 0; i < v2.size(); i++)//put all of v2 back into the end manager data file
+	for (int i = 0; i < static_cast<int>(v2.size()); i++)//put all of v2 back into the end manager data file
 	{
 		temp = v2.at(i);
 		output << temp;
@@ -161,7 +161,7 @@ void create(string userData[], vector<string> objectData, string username, strin
 	output.close();
 
 	output.open(dataFile, ios::ate);
-	for (int i = 0; i < objectData.size(); i++)
+	for (int i = 0; i < static_cast<int>(objectData.size()); i++)
 		output << objectData.at(i) << " ";
 	output.close();
 }
