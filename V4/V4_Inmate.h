@@ -28,6 +28,7 @@ public:
 	//void deleteInmate(bool canCreateInmate);
 	//string remainingSentence();//permissions bool name required
 	Inmate(int userIndex, string userData[], string inmateData[]);
+	Inmate();
 
 	void save();
 
