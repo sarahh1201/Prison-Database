@@ -251,8 +251,9 @@ Staff logInfo(string username, string password)
 
 
 
-void logOut(Staff currentStaff)//delete the current object and return to login menu
+//hasnt been tested, will also need to loop back to login screen. 
+void logOut(Staff* currentStaff)//delete the current object and return to login menu
 {
-
+	delete currentStaff;
 }
 #endif
