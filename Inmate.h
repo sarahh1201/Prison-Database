@@ -5,8 +5,6 @@
 
 using namespace std;
 
-const int inmateMaxIndices = 9;
-
 class Inmate : public User
 {
 protected:
