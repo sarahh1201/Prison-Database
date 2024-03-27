@@ -1,6 +1,6 @@
 ---
 triple:          'arm64-apple-darwin'
-binary-path:     '/Users/sarahhill/Documents/GitHub/welcomeScreen/V1/output/WelcomePageWithSchedule'
+binary-path:     '/Users/sarahhill/Documents/GitHub/welcomeScreen/V4/output/WelcomePageWithSchedule'
 relocations:
   - { offsetInCU: 0x2ECF, offset: 0x2ECF, size: 0x8, addend: 0x0, symName: __ZNSt3__124__put_character_sequenceB8ue170006IcNS_11char_traitsIcEEEERNS_13basic_ostreamIT_T0_EES7_PKS4_m, symObjAddr: 0x2684, symBinAddr: 0x100005B24, symSize: 0x1F4 }
   - { offsetInCU: 0x4D10, offset: 0x4D10, size: 0x8, addend: 0x0, symName: __ZNSt3__1lsB8ue170006INS_11char_traitsIcEEEERNS_13basic_ostreamIcT_EES6_PKc, symObjAddr: 0x78, symBinAddr: 0x100003518, symSize: 0x48 }
