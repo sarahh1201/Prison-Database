@@ -22,13 +22,5 @@
 21:00 - Quiet Time
 22:00 - Prepare for Bed
 23:00 - Lights Out
-00:00 - Lights Out
-01:00 - Lights Out
-02:00 - Lights Out
-03:00 - Lights Out
-04:00 - Lights Out
-05:00 - Lights On
-06:00 - Breakfast
-07:00 - Exercise / Yard Time
 
 
