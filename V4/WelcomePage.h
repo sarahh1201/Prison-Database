@@ -1,25 +1,16 @@
+#ifndef WELCOMEPAGE_H
+#define WELCOMEPAGE_H
 
-// Created by Jenny Halbert on 2024-03-27.
-//
-
-#ifndef SENG1210_PRISON_DATABASE_WELCOMEPAGE_H
-#define SENG1210_PRISON_DATABASE_WELCOMEPAGE_H
 #include "Customize.h"
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <iomanip>
 #include <ctime>
+#include "V4_Staff.h"
+#include "V4_Inmate.h"
 
 using namespace std;
-
-void welcome();
-void prisonerView(string& user);
-void staffView(string& user);
-void managerView(string& user);
-string getCurrentDateTime();
-void displaySchedule(const string& filename);
-
 
 //Welcome screen and different user views
 void welcome()
@@ -56,23 +47,29 @@ void welcome()
             string name, password;
             clearScreen();
 
-            //Call login function here & delete the following 4 lines
             cout << "Name: ";
-            cin >> name;
+            cin >> name; 
             cout << "Password: ";
             cin >> password;
+            //Call login function
 
             if (view==1)
             {
+                Inmate user; 
                 prisonerView(name);
+                user.inmateLogin(name,password);
             }
             else if(view==2)
             {
+                Staff user;
                 staffView(name);
+                user.staffLogin(name,password);
             }
             else if(view==3)
             {
+                Staff user;
                 managerView(name);
+                user.staffLogin(name,password);
             }
 
             break;
@@ -117,8 +114,8 @@ void prisonerView(string& user)
             cout << "Enter 1 to go back: ";
             int exit;
             cin>>exit;
-
-                while(exit!=1)
+        
+                while(exit!=1) 
                 {
                     clearScreen();
                     cout << "Invalid input!" <<endl;
@@ -141,8 +138,8 @@ void prisonerView(string& user)
              cout << "Enter 1 to go back: ";
              int exit;
              cin>>exit;
-
-                while(exit!=1)
+        
+                while(exit!=1) 
                 {
                     clearScreen();
                     displaySchedule(filename);
@@ -206,8 +203,8 @@ void staffView(string& user) {
             cout << "Enter 1 to go back: ";
             int exit;
             cin>>exit;
-
-                while(exit!=1)
+            
+                while(exit!=1) 
                 {
                     clearScreen();
                     cout << "Invalid input!" <<endl;
@@ -231,8 +228,8 @@ void staffView(string& user) {
             cout << "Enter 1 to go back: ";
             int exit;
             cin>>exit;
-
-                while(exit!=1)
+            
+                while(exit!=1) 
                 {
                     clearScreen();
                     displaySchedule(filename);
@@ -301,8 +298,8 @@ void managerView(string &user) {
                 cout << "Enter 1 to go back: ";
                 int exit;
                 cin>>exit;
-
-                while(exit!=1)
+            
+                while(exit!=1) 
                 {
                     clearScreen();
                     displaySchedule(filename);
@@ -324,8 +321,8 @@ void managerView(string &user) {
                 cout << "Enter 1 to go back: ";
                 int exit;
                 cin>>exit;
-
-                while(exit!=1)
+            
+                while(exit!=1) 
                 {
                     clearScreen();
                     cout << "Invalid input!" <<endl;
@@ -346,8 +343,8 @@ void managerView(string &user) {
                 cout << "Enter 1 to go back: ";
                 int exit;
                 cin>>exit;
-
-                while(exit!=1)
+            
+                while(exit!=1) 
                 {
                     clearScreen();
                     cout << "Invalid input!" <<endl;
@@ -359,7 +356,7 @@ void managerView(string &user) {
                     clearScreen();
                     managerView(user);
                 }
-
+                
                 break;
             }
             case 4: // Manage People
@@ -385,8 +382,8 @@ void managerView(string &user) {
                 cout << "Enter 1 to go back: ";
                 int exit;
                 cin>>exit;
-
-                while(exit!=1)
+            
+                while(exit!=1) 
                 {
                     clearScreen();
                     cout << "Invalid input!" <<endl;
@@ -398,7 +395,7 @@ void managerView(string &user) {
                     clearScreen();
                     managerView(user);
                 }
-                   break;
+                   break; 
                 }
                 case 2:
                 {
@@ -408,8 +405,8 @@ void managerView(string &user) {
                 cout << "Enter 1 to go back: ";
                 int exit;
                 cin>>exit;
-
-                while(exit!=1)
+            
+                while(exit!=1) 
                 {
                     clearScreen();
                     cout << "Invalid input!" <<endl;
@@ -423,7 +420,7 @@ void managerView(string &user) {
                 }
                     break;
                 }
-
+                
                 default:
                 {
                     clearScreen();
@@ -442,7 +439,7 @@ void managerView(string &user) {
                     break;
             }
             }
-        }
+        }    
 
 
 // Function to get current date and time
@@ -489,15 +486,4 @@ void displaySchedule(const string& filename) {
         cerr << "Failed to open file: " << filename << endl;
     }
 }
-<<<<<<< HEAD
-<<<<<<< HEAD:V4/WelcomePage.h
-*/
-=======
- */
->>>>>>> 3c844678feaa944eae043a2f63d1208f88cecd18:V4/WelcomePageWithSchedule.cpp
-=======
-
-
-
-#endif //SENG1210_PRISON_DATABASE_WELCOMEPAGE_H
->>>>>>> fee9cfb5e21ce09a08f6a81535d6f7b793040c4a
+#endif
