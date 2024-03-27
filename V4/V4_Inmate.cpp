@@ -1,5 +1,16 @@
 #include "V4_Inmate.h"
 
+Inmate::Inmate()
+{
+	lawyerName = "N/A";
+	sentenceLength = "N/A";
+	probationDate = "N/A";
+	incarDate = "N/A";//incaceration date
+	cellNum = "N/A";
+	cellBlock = "N/A";
+	roommateID = "N/A";
+	scheduleGroup = "N/A";
+}
 Inmate::Inmate(int userIndex, string userData[], string inmateData[])
 {
 	//inmate fields
