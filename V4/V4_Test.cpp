@@ -195,7 +195,7 @@ void displaySchedule(string filename)
 }
 
 //different user views
-void prisonerView(string& user)
+void prisonerView(string& user, Inmate& object)
 {
     clearScreen();
     colourize("Welcome ", 34), colourize(user, 34), colourize("!", 34);
@@ -239,7 +239,7 @@ void prisonerView(string& user)
         if (exit == 1)
         {
             clearScreen();
-            prisonerView(user);
+            prisonerView(user, object);
         }
         break;
     }
@@ -265,7 +265,7 @@ void prisonerView(string& user)
         if (exit == 1)
         {
             clearScreen();
-            prisonerView(user);
+            prisonerView(user, object);
         }
 
         break;
@@ -273,12 +273,13 @@ void prisonerView(string& user)
     case 3: //Logout
     {
         clearScreen();
+        object.~Inmate();
         return;
         break;
     }
     }
 }
-void staffView(string& user) {
+void staffView(string& user, Staff& object) {
     clearScreen();
     colourize("Welcome ", 34), colourize(user, 34), colourize("!", 34);
 
@@ -298,14 +299,15 @@ void staffView(string& user) {
     cout << "\nSelect an option: " << endl;
     cout << "1. Prisoner info"
         << "\n2. View Schedule"
-        << "\n3. Logout"
+        << "\n3. Edit User Info"
+        << "\n4. Logout"
         << endl;
 
     cout << "Option: ";
     int option;
     cin >> option;
 
-    while (option != 1 && option != 2 && option != 3) {
+    while (option != 1 && option != 2 && option != 3 && option != 4) {
         cout << "Invalid input." << endl;
         cin >> option;
     }
@@ -330,7 +332,7 @@ void staffView(string& user) {
         if (exit == 1)
         {
             clearScreen();
-            staffView(user);
+            staffView(user, object);
         }
         break;
     }
@@ -356,14 +358,49 @@ void staffView(string& user) {
         if (exit == 1)
         {
             clearScreen();
-            staffView(user);
+            staffView(user, object);
         }
 
         break;
     }
-    case 3: //Logout
+    case 3: //Edit Info
     {
         clearScreen();
+
+        cout << "Select an option: "
+            << "\n1. "
+            << "\n2. "
+            << "\n3. "
+            << "\n4. Return" << endl;
+
+        cout << "Option: ";
+        cin >> option;
+
+        while (option != 1 && option != 2 && option != 3 && option != 4) {
+            cout << "Invalid input. Please enter a valid option. " << endl;
+            cin >> option;
+        }
+        switch (option)
+        {
+        case 1: {
+
+        }
+        case 2: {
+
+        }
+        case 3: {
+
+        }
+        case 4:{
+            clearScreen();
+            staffView(user, object);
+        }
+        }
+    }
+    case 4: //Logout
+    {
+        clearScreen();
+        object.~Staff();
         return;
         break;
     }
@@ -556,6 +593,7 @@ void managerView(string& user) {
 
 int main()
 {
+    //testing functions
 		createTextFile();
 		cout << "Text File" << endl;
 		createUsernameFile();
@@ -581,6 +619,8 @@ int main()
 		cout << "Password: " << staff1.getPassword() << endl;
 
 
+
+//actual program
         bool inProgram = true;
         while (inProgram)//Welcome screen loop
         {
@@ -610,7 +650,7 @@ int main()
 
                 while (option != 1 && option != 2 && option != 3)
                 {
-                    cout << "Invalid input." << endl;
+                    cout << "Invalid input. Please enter a valid option" << endl;
                     cin >> view;
                 }
 
@@ -621,19 +661,20 @@ int main()
                 cin >> name;
                 cout << "Password: ";
                 cin >> password;
+                if (view == 1)
+           
                 //Call login function
-
                 if (view == 1)
                 {
                     Inmate user;
                     user.inmateLogin(name, password);
-                    prisonerView(name);
+                    prisonerView(name, user);
                 }
                 else if (view == 2)
                 {
                     Staff user;
                     user.staffLogin(name, password);
-                    staffView(name);
+                    staffView(name, user);
                 }
                 else if (view == 3)
                 {
