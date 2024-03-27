@@ -24,6 +24,7 @@ public:
 	//~Inmate();
 	//void deleteInmate(bool canCreateInmate);
 	//string remainingSentence();//permissions bool name required
+	Inmate();
 	Inmate(int userIndex, string userData[], string inmateData[]);
 
 	string getLawyerName();
