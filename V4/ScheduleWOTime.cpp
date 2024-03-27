@@ -5,21 +5,19 @@
 
 using namespace std;
 
-//removed all date and time functions, 
-
 void displaySchedule(string filename) {
     ifstream file(filename);
     if (file.is_open()) {
         cout << "-------------------------------------------------------------" << endl;
         string line;
-        int count = 0; 
-        bool display = false; 
-        while (getline(file, line) && count < 8) {
-           // int hour = stoi(line.substr(0, 2));
-            if (!display && hour >= 0) { 
+        int count = 0;
+        bool display = false;
+        while (getline(file, line) && count < 24) {
+            int hour = stoi(line.substr(0, 2));
+            if (!display && hour >= 0) {
                 display = true;
             }
-            if (display && count < 8) {
+            if (display && count < 24) {
                 cout << "| " << setw(5) << left << line.substr(0, 5) << " | " << setw(40) << left << line.substr(8) << endl;
                 cout << "-------------------------------------------------------------" << endl;
                 count++;
