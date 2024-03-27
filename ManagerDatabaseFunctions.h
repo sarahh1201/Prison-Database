@@ -106,7 +106,7 @@ void setManagerInfo(bool canSetManagerInfo, int managerIndex, int fieldIndex, st
 	//catch() ACCESS DENIED: MISSING EDIT PERMISSIONS
 }
 
-Staff logInfo(string username, string password)
+Manager managerLogin(string username, string password)
 {
 	ifstream input("Manager_Usernames.txt");//open the usernames and password file (order of info is index, username, password)
 	//look for the username
@@ -137,7 +137,7 @@ Staff logInfo(string username, string password)
 					for (int j = 0; j < managerMaxIndices; j++)
 						managerData[j] = getManagerInfo(true, index, j);
 
-					return Staff(true, index, userData, managerData);
+					return Manager(true, index, userData, managerData);
 				}
 				//}
 				//catch() PASSWORDS DONT MATCH
