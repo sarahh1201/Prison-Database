@@ -90,7 +90,6 @@ public:
 			i++;
 		}
 		input.close();
-
 	}
 
 	//hasnt been tested, will also need to loop back to login screen. 

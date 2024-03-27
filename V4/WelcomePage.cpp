@@ -1,16 +1,27 @@
-#ifndef WELCOMEPAGE_H
-#define WELCOMEPAGE_H
-
 #include "Customize.h"
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <iomanip>
 #include <ctime>
-#include "V4_Staff.h"
-#include "V4_Inmate.h"
+//#include "V4_Staff.h"
+//#include "V4_Inmate.h"
+//#include "Schedule.h"
+
+void welcome();
+void prisonerView(string& user);
+void staffView(string& user);
+void managerView(string& user);
+string getCurrentDateTime();
+void displaySchedule(const string& filename);
 
 using namespace std;
+
+int main()
+{
+    welcome();
+    return 0;
+}
 
 //Welcome screen and different user views
 void welcome()
@@ -55,21 +66,21 @@ void welcome()
 
             if (view==1)
             {
-                Inmate user; 
+                //Inmate user; 
                 prisonerView(name);
-                user.inmateLogin(name,password);
+                //user.inmateLogin(name,password);
             }
             else if(view==2)
             {
-                Staff user;
+                //Staff user;
                 staffView(name);
-                user.staffLogin(name,password);
+                //user.staffLogin(name,password);
             }
             else if(view==3)
             {
-                Staff user;
+                //Staff user;
                 managerView(name);
-                user.staffLogin(name,password);
+                //user.staffLogin(name,password);
             }
 
             break;
@@ -442,6 +453,7 @@ void managerView(string &user) {
         }    
 
 
+
 // Function to get current date and time
 string getCurrentDateTime() {
     time_t now = time(0);
@@ -486,4 +498,3 @@ void displaySchedule(const string& filename) {
         cerr << "Failed to open file: " << filename << endl;
     }
 }
-#endif

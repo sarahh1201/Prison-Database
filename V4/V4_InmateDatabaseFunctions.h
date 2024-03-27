@@ -154,7 +154,7 @@ return Inmate();
 void inmateLogOut(Inmate* currentInmate)//delete the current object and return to login menu
 {
 	delete currentInmate;
-    return Welcome();
+    //return Welcome();
 }
 
 #endif
