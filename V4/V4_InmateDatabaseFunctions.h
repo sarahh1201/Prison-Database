@@ -13,7 +13,8 @@ string getInmateInfo(bool canGetInmateInfo, int inmateIndex, int fieldIndex)//in
 	string data = "ERROR: NO DATA FOUND (getInmateInfo)";//assigned a string to ensure that something is returned
 	//try {
 	ifstream input("Inmate_Data.txt");//open the inamte data file
-	for (int i = 0; i <= inmateIndex; i = i++)//iterate for every row until the inmate index is reached
+
+    for (int i = 0; i <= inmateIndex; i++) //iterate for every row until the inmate index is reached
 	{
 		string unused;//throwaway string to iterate inputs
 		if (i == inmateIndex)//if the current index is the desired inmate row
@@ -153,6 +154,7 @@ return Inmate();
 void inmateLogOut(Inmate* currentInmate)//delete the current object and return to login menu
 {
 	delete currentInmate;
+    return Welcome();
 }
 
 #endif
