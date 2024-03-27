@@ -5,6 +5,8 @@
 
 using namespace std;
 
+//removed all date and time functions, 
+
 void displaySchedule(string filename) {
     ifstream file(filename);
     if (file.is_open()) {
@@ -13,7 +15,7 @@ void displaySchedule(string filename) {
         int count = 0; 
         bool display = false; 
         while (getline(file, line) && count < 8) {
-            int hour = stoi(line.substr(0, 2));
+           // int hour = stoi(line.substr(0, 2));
             if (!display && hour >= 0) { 
                 display = true;
             }
