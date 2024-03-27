@@ -1,22 +1,23 @@
-#include<iostream>
+/*#include<iostream>
 #include<fstream>
 #include<vector>
+#include <cstring>
 
 using namespace std;
 
 void processFile(const string& filename){
-    if(!file.is_open()){
+    if(!filename.is_open()){
         throw EntryException("Unable to open file");
     }
 
     vector<string> lines;
     string line;
-    while(getline(file, line)){
+    while(getline(filename, line)){
      try{
             lines.push_back(line);
      }
-     catch(const EntryException& e){
-         cout<<e.what()<<endl;
+     catch(const EntryException& ex){
+         cout<<ex.what()<<endl;
      }
     }
 }
@@ -24,4 +25,4 @@ void processFile(const string& filename){
 int main() {
     processFile("example.txt");
     return 0;
-}
+}*/

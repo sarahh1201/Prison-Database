@@ -1,4 +1,6 @@
 #include "V4_Staff.h"
+using namespace std;
+
 void create(string userData[], vector<string> objectData, string username, string password, string usernameFile, string userFile, string dataFile)
 {
 	string userIndex;

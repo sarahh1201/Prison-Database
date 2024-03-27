@@ -20,9 +20,9 @@ const int inmateMaxIndices = 9;
 class User
 {
 protected:
-	int inmateCount = 20;//default starter value to edit
-	int staffCount = 20;//default starter value to edit
-	int managerCount = 5;//default starter value to edit
+	int inmateCount;// = 20;//default starter value to edit
+	int staffCount;// = 20;//default starter value to edit
+	int managerCount;// = 5;//default starter value to edit
 	//general user info 
 	string firstname;
 	string lastname;
