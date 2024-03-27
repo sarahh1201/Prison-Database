@@ -73,6 +73,12 @@ void Manager::deleteAccount(string username, int accountType)
 		return;
 	}
 
+	switch (accountType)
+	{
+	case 0: {inmateCount--; break; }
+	case 1: {staffCount--; break; }
+	case 2: {managerCount--; break; }
+	}
 
 	input.open(dataFile);
 
@@ -190,8 +196,154 @@ void Manager::deleteAccount(string username, int accountType)
 	output.close();
 }
 
-void Manager::createAccount()
+void Manager::createAccount(int accountType)
 {
+	string usernameFile;
+	switch (accountType)//decide which file to pull from
+	{
+	case 0: {
+		usernameFile += "Inmate_Usernames.txt";
+		break;
+	}
+	case 1: {
+		usernameFile += "Staff_Usernames.txt";
+		break;
+	}
+	case 2: {
+		usernameFile += "Manager_Usernames.txt";
+		break;
+	}
+	}
+
+	
+	string inUsername;
+	bool match = false;
+	string newUsername;
 	cout << "\nPlease enter the username of the new account: ";
-	cin 
+	cin >> newUsername;
+	//find user index
+	do
+	{
+		ifstream input(usernameFile);//open the usernames and password file (order of info is index, username, password)
+		int position = 0;
+		int index = 0;
+		match = false;//reset match boolean
+		while (getline(input, inUsername, ' '))
+		{
+			if ((position % maxUsernameFileIndex) == 1)//skip every entry that is not usernames 
+				if (inUsername == newUsername)//if the usernames match
+				{
+					match = true;//set match to true to allow loop to continue once
+					char c;
+					cout << "\nUsername " << newUsername << " is already in use. Would you like to cancel account creation? (y/n)";
+					cin >> c;
+					if (c == 'y')
+					{
+						cout << "\nExiting account creation.";
+						input.close();
+						return;
+					}
+					else if (c == 'n')
+					{
+						cout << "\nPlease enter a new username: ";
+						cin >> newUsername;
+						input.close();//close file
+						break;
+					}
+				}
+			position++;
+		} 
+	} while (match);
+
+	cout << "\nPlease enter a password: ";
+	string p;
+	cin >> p;
+
+	string userData[maxIndices];
+	cout << "\nPlease enter the first name: ";
+	cin>>userData[1];
+	cout << "\nPlease enter the last name: ";
+	cin >> userData[2];
+	cout << "\nPlease enter the government ID number: ";
+	cin >> userData[3];
+	cout << "\nPlease enter the user ID number: ";
+	cin >> userData[4];
+
+	vector<string> objectData;
+	string userFile, dataFile;
+	string temp;
+	int maxDataIndex;
+	switch (accountType)//decide which file to pull from
+	{
+	case 0: {
+		userFile += "Inmate_Users.txt";
+		dataFile += "Inmate_Data.txt";
+		inmateCount++;
+		userData[0] = inmateCount-1;
+		stringstream ss;
+		ss << (inmateCount - 1);
+		objectData.push_back(ss.str());
+		cout << "\nPlease enter the inmate's representative's last name: ";
+		cin >> temp;
+		objectData.push_back(temp);
+		cout << "\nPlease enter the inmate's sentence length in months: ";
+		cin >> temp;
+		objectData.push_back(temp);
+		cout << "\nPlease enter the inmate's probation date (mm/dd/yyyy): ";
+		cin >> temp;
+		objectData.push_back(temp);
+		cout << "\nPlease enter the inmate's incarceration date: ";
+		cin >> temp;
+		objectData.push_back(temp);
+		cout << "\nPlease enter the inmate's cell number: ";
+		cin >> temp;
+		objectData.push_back(temp);
+		cout << "\nPlease enter the inmate's cell block: ";
+		cin >> temp;
+		objectData.push_back(temp);
+		cout << "\nPlease enter the inmate's roommate ID: ";
+		cin >> temp;
+		objectData.push_back(temp);
+		cout << "\nPlease enter the inmate's schedule group: ";
+		cin >> temp;
+		objectData.push_back(temp);
+		break;
+	}
+	case 1: {
+		userFile += "Staff_Users.txt";
+		dataFile += "Staff_Data.txt";
+		staffCount++;
+		userData[0] = staffCount-1;
+		stringstream ss;
+		ss << (staffCount - 1);
+		objectData.push_back(ss.str());
+		cout << "\nPlease enter the staff member's position name: ";
+		cin >> temp;
+		objectData.push_back(temp);
+		cout << "\nPlease enter the staff schedule group: ";
+		cin >> temp;
+		objectData.push_back(temp);
+		
+		break;
+	}
+	case 2: {
+		userFile += "Manager_Users.txt";
+		dataFile += "Manager_Data.txt";
+		managerCount++;
+		userData[0] = managerCount-1;
+		stringstream ss;
+		ss << (managerCount - 1);
+		objectData.push_back(ss.str());
+		cout << "\nPlease enter the manager's position name: ";
+		cin >> temp;
+		objectData.push_back(temp);
+		cout << "\nPlease enter the manager's schedule group: ";
+		cin >> temp;
+		objectData.push_back(temp);
+
+		break;
+	}
+	}
+
+	create(userData, objectData, newUsername, p, usernameFile, userFile, dataFile);
 }
