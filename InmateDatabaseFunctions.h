@@ -106,7 +106,7 @@ void setInmateInfo(bool canSetInmateInfo, int inmateIndex, int fieldIndex, strin
 	//catch() ACCESS DENIED: MISSING EDIT PERMISSIONS
 }
 
-Inmate logInfo(string username, string password)
+Inmate inmateLogin(string username, string password)
 {
 		ifstream input("Inmate_Usernames.txt");//open the usernames and password file (order of info is: index, username, password)
 		//look for the username
