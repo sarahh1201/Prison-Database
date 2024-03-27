@@ -106,7 +106,7 @@ void setInmateInfo(bool canSetInmateInfo, int inmateIndex, int fieldIndex, strin
 	//}
 	//catch() ACCESS DENIED: MISSING EDIT PERMISSIONS
 }
-
+//check for inmate username error, same as staff
 Inmate inmateLogin(string username, string password)
 {
 	ifstream input("Inmate_Usernames.txt");//open the usernames and password file (order of info is: index, username, password)
@@ -146,7 +146,7 @@ Inmate inmateLogin(string username, string password)
 		i++;
 	}
 	input.close();
-
+return Inmate();
 }
 
 //hasnt been tested, will also need to loop back to login screen. 
