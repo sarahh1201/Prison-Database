@@ -1,6 +1,5 @@
 #include "V4_Staff.h"
-using namespace std;
-
+#include "V4_StaffDatabaseFunctions.h"
 void create(string userData[], vector<string> objectData, string username, string password, string usernameFile, string userFile, string dataFile)
 {
 	string userIndex;
@@ -349,4 +348,41 @@ void Staff::createAccount(int accountType)
 	}
 
 	create(userData, objectData, newUsername, p, usernameFile, userFile, dataFile);
+}
+
+void Staff::save()
+{
+	int userIndex = getUserIndex();
+
+	//save username if it has been updated
+	if (getUsername() != "username")
+	{
+		if (getUsername() == "errorusername")//default username, error has occured if present
+		{
+			cout << "\nStaff Error encountered. Please log out or correct username. Did not successfully save.";
+			return;
+		}
+		setUsernameInfo(0, userIndex, 1, getUsername());
+	}
+
+	//save password if it has been updated
+	if (getPassword() != "password")
+	{
+		if (getUsername() == "errorpassword")//default password, error has occured if present
+		{
+			cout << "\nStaff Error encountered. Please log out or correct password. Did not successfully save.";
+			return;
+		}
+		setUsernameInfo(0, userIndex, 2, getPassword());
+	}
+
+	setStaffInfo(userIndex, 1, getPosition());
+	setStaffInfo(userIndex, 2, getScheduleGroup());
+
+	setUserInfo(0, userIndex, 1, getFirstname());
+	setUserInfo(0, userIndex, 2, getLastname());
+	setUserInfo(0, userIndex, 3, getGovID());
+	setUserInfo(0, userIndex, 4, getUserID());
+
+	cout << "\nSaved";
 }
