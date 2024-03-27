@@ -19,7 +19,7 @@ int main()
 	Staff staff1;
 	cout << "Staff object" << endl;
 
-	staff1 = logInfo("name3", "pass3");
+	staff1 = staffLogin("name3", "pass3");
 	cout << "Updated Staff Object" << endl;
 
 	cout << "First name: " << staff1.getFirstname() << endl;

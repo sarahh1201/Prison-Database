@@ -10,12 +10,12 @@ using namespace std;
 
 
 
-string getStaffInfo(bool canGetStaffInfo, int staffIndex, int fieldIndex)//staff index= file row, field index= file column
+string getStaffInfo(/*bool canGetStaffInfo,*/ int staffIndex, int fieldIndex)//staff index= file row, field index= file column
 {
 	string data = "ERROR: NO DATA FOUND (getStaffInfo)";//assigned a string to ensure that something is returned
 	//try {
 	ifstream input("Staff_Data.txt");//open the staff data file
-	for (int i = 0; i <= staffIndex; i = i++)//iterate for every row until the staff index is reached
+	for (int i = 0; i <= staffIndex; i++)//iterate for every row until the staff index is reached
 	{
 		string unused;//throwaway string to iterate inputs
 		if (i == staffIndex)//if the current index is the desired staff row
@@ -37,7 +37,7 @@ string getStaffInfo(bool canGetStaffInfo, int staffIndex, int fieldIndex)//staff
 	return data;
 }
 
-void setStaffInfo(bool canSetStaffInfo, int staffIndex, int fieldIndex, string newData)
+void setStaffInfo(/*bool canSetStaffInfo,*/ int staffIndex, int fieldIndex, string newData)
 {
 	vector<string> v1;//vector for first half of data
 	string temp;//string to put input into vector
@@ -47,7 +47,7 @@ void setStaffInfo(bool canSetStaffInfo, int staffIndex, int fieldIndex, string n
 //Save all of the data into vectors to update it
 	//save first half of data to a vector
 	ifstream input("Staff_Data.txt");
-	for (int i = 0; i <= staffIndex; i = i++)//iterate for every row until the staff index is reached
+	for (int i = 0; i <= staffIndex; i++)//iterate for every row until the staff index is reached
 	{
 		for (int j = 0; j < staffMaxIndices; j++)//iterate through columns
 		{
@@ -206,14 +206,14 @@ void createUsernameFile()
 
 
 //login functions NOT COMPLETE, MAKE AN EXCEPTION FOR WHEN PASSWORDS DONT MATCH!!
-Staff logInfo(string username, string password)
+Staff staffLogin(string username, string password)
 {
 	ifstream input("Staff_Usernames.txt");//open the usernames and password file (order of info is index, username, password)
 	//look for the username
 	int i = 0;
 	string inUsername;
-	int staffIndex;
-	bool match = false;
+	//int staffIndex; Unused variable 
+	//bool match = false; Unused variable
 	while (getline(input, inUsername, ' '))
 	{
 
@@ -233,11 +233,11 @@ Staff logInfo(string username, string password)
 
 
 					for (int j = 0; j < maxIndices; j++)
-						userData[j] = getUserInfo(true, 0, index, j);
+						userData[j] = getUserInfo(/*true,*/ 0, index, j);
 
 
 					for (int j = 0; j < staffMaxIndices; j++)
-						staffData[j] = getStaffInfo(true, index, j);
+						staffData[j] = getStaffInfo(/*true,*/ index, j);
 
 					return Staff(true, index, userData, staffData);
 				}

@@ -3,6 +3,7 @@
 #include "User.h"
 #include "RangeException.h"
 #include <sstream>
+#include <vector>
 
 
 string getUserInfo(/*bool canGetUserInfo,*/ int userFileNumber, int memberIndex, int fieldIndex)
@@ -26,7 +27,7 @@ string getUserInfo(/*bool canGetUserInfo,*/ int userFileNumber, int memberIndex,
 	//}
 	//catch (FILE NUMBER OUT OF RANGE)
 	ifstream input(filename);//open the correct user data file
-	for (int i = 0; i <= memberIndex; i = i++)//iterate for every row until the user index is reached
+	for (int i = 0; i <= memberIndex; i++)//iterate for every row until the user index is reached
 	{
 		string unused;//throwaway string to iterate inputs
 		if (i == memberIndex)//if the current index is the desired user row
@@ -48,7 +49,7 @@ string getUserInfo(/*bool canGetUserInfo,*/ int userFileNumber, int memberIndex,
 	return data;
 }
 
-void setStaffInfo(bool canSetStaffInfo, int userFileNumber, int memberIndex, int fieldIndex, string newData)
+void setStaffInfo(/*bool canSetStaffInfo,*/ int userFileNumber, int memberIndex, int fieldIndex, string newData)
 {
 
 	string filename;
@@ -76,7 +77,7 @@ void setStaffInfo(bool canSetStaffInfo, int userFileNumber, int memberIndex, int
 //Save all of the data into vectors to update it
 	//save first half of data to a vector
 	ifstream input(filename);
-	for (int i = 0; i <= memberIndex; i = i++)//iterate for every row until the staff index is reached
+	for (int i = 0; i <= memberIndex; i++)//iterate for every row until the staff index is reached
 	{
 		for (int j = 0; j < maxIndices; j++)//iterate through columns
 		{
