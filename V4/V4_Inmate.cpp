@@ -1,5 +1,4 @@
 #include "V4_Inmate.h"
-#include "V4_InmateDatabaseFunctions.h"
 
 Inmate::Inmate(int userIndex, string userData[], string inmateData[])
 {
