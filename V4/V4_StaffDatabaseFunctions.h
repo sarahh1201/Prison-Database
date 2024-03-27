@@ -206,15 +206,13 @@ void createUsernameFile()
 }
 
 
-//login functions NOT COMPLETE, MAKE AN EXCEPTION FOR WHEN PASSWORDS DONT MATCH!!
+//login functions, after login CHECK username FOR "errorusername"
 Staff staffLogin(string username, string password)
 {
 	ifstream input("Staff_Usernames.txt");//open the usernames and password file (order of info is index, username, password)
 	//look for the username
 	int i = 0;
 	string inUsername;
-	//int staffIndex; Unused variable 
-	//bool match = false; Unused variable
 	while (getline(input, inUsername, ' '))
 	{
 		string inPassword;
@@ -223,7 +221,6 @@ Staff staffLogin(string username, string password)
 			{
 				input >> inPassword;//take in the next entry into passwords
 				i++;
-				//try{ make the below a compare function that throws the excpetion
 				if (inPassword == password)//if the passwords match
 				{
 					int index = i / maxUsernameFileIndex;
@@ -239,14 +236,13 @@ Staff staffLogin(string username, string password)
 					for (int j = 0; j < staffMaxIndices; j++)
 						staffData[j] = getStaffInfo(/*true,*/ index, j);
 
-					return Staff(true, index, userData, staffData);
+					return Staff(index, userData, staffData);
 				}
-				//}
-				//catch() PASSWORDS DONT MATCH
 			}
 		i++;
 	}
 	input.close();
+	return Staff();
 }
 
 
@@ -256,6 +252,4 @@ void staffLogOut(Staff* currentStaff)//delete the current object and return to l
 {
 	delete currentStaff;
 }
-
-
 #endif

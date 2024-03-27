@@ -21,9 +21,6 @@ string getUserInfo(/*bool canGetUserInfo,*/ int userFileNumber, int memberIndex,
 	case 1: {
 		filename += "Inmate_Users.txt"; break;
 	}
-	case 2: {
-		filename += "Manager_Users.txt"; break;
-	}
 	}
 	//}
 	//catch (FILE NUMBER OUT OF RANGE)
@@ -62,9 +59,6 @@ void setStaffInfo(/*bool canSetStaffInfo,*/ int userFileNumber, int memberIndex,
 	}
 	case 1: {
 		filename += "Inmate_Users.txt"; break;
-	}
-	case 2: {
-		filename += "Manager_Users.txt"; break;
 	}
 	}
 	//}
@@ -151,9 +145,6 @@ void createUserFile(int userFileNumber)
 	}
 	case 1: {
 		filename += "Inmate_Users.txt"; break;
-	}
-	case 2: {
-		filename += "Manager_Users.txt"; break;
 	}
 	}
 	//}
