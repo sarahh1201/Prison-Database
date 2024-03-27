@@ -2,6 +2,7 @@
 #define MANAGER_H
 #include <string>
 #include "Staff.h"
+#include "ManagerDatabaseFunctions.h";
 
 using namespace std;
 
@@ -14,11 +15,12 @@ class Manager : public Staff
     ~Manager()
     {
 		deleteAccount(username, 3);
+		managerCount--;
 	}
  
 	void deleteAccount(string username, int accountType);
 
-	void createAccount();
+	void createAccount(int accountType);
 
 };
 #endif
