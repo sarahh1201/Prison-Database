@@ -149,5 +149,11 @@ Inmate logInfo(string username, string password)
 		input.close();
 	
 }
+
+//hasnt been tested, will also need to loop back to login screen. 
+void logOut(inmate* currentInmate)//delete the current object and return to login menu
+{
+	delete currentInmate;
+}
 #endif
 
