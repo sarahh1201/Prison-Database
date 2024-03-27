@@ -166,4 +166,10 @@ void create(string userData[], vector<string> objectData, string username, strin
 	output.close();
 }
 
+//hasnt been tested, will also need to loop back to login screen. 
+void logOut(Manager* currentManager)//delete the current object and return to login menu
+{
+	delete currentManager;
+}
+
 #endif
