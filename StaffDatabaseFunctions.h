@@ -10,12 +10,12 @@ using namespace std;
 
 
 
-string getStaffInfo(bool canGetStaffInfo, int staffIndex, int fieldIndex)//staff index= file row, field index= file column
+string getStaffInfo(int staffIndex, int fieldIndex)//staff index= file row, field index= file column
 {
 	string data = "ERROR: NO DATA FOUND (getStaffInfo)";//assigned a string to ensure that something is returned
 	//try {
 	ifstream input("Staff_Data.txt");//open the staff data file
-	for (int i = 0; i <= staffIndex; i = i++)//iterate for every row until the staff index is reached
+	for (int i = 0; i <= staffIndex; i++)//iterate for every row until the staff index is reached
 	{
 		string unused;//throwaway string to iterate inputs
 		if (i == staffIndex)//if the current index is the desired staff row
@@ -37,7 +37,7 @@ string getStaffInfo(bool canGetStaffInfo, int staffIndex, int fieldIndex)//staff
 	return data;
 }
 
-void setStaffInfo(bool canSetStaffInfo, int staffIndex, int fieldIndex, string newData)
+void setStaffInfo(int staffIndex, int fieldIndex, string newData)
 {
 	vector<string> v1;//vector for first half of data
 	string temp;//string to put input into vector
@@ -47,7 +47,7 @@ void setStaffInfo(bool canSetStaffInfo, int staffIndex, int fieldIndex, string n
 //Save all of the data into vectors to update it
 	//save first half of data to a vector
 	ifstream input("Staff_Data.txt");
-	for (int i = 0; i <= staffIndex; i = i++)//iterate for every row until the staff index is reached
+	for (int i = 0; i <= staffIndex; i++)//iterate for every row until the staff index is reached
 	{
 		for (int j = 0; j < staffMaxIndices; j++)//iterate through columns
 		{
@@ -92,14 +92,14 @@ void setStaffInfo(bool canSetStaffInfo, int staffIndex, int fieldIndex, string n
 	//recreate staff data file
 	ofstream output;
 	output.open("Staff_Data.txt");
-	for (int i = 0; i < v1.size(); i++)//put all of v1 back into the staff data file
+	for (int i = 0; i < static_cast<int>(v1.size()); i++)//put all of v1 back into the staff data file
 	{
 		temp = v1.at(i);
 		output << temp;
 	}
 	output << newData;//put the new info into the file
 	output << ' ';
-	for (int i = 0; i < v2.size(); i++)//put all of v2 back into the end staff data file
+	for (int i = 0; i < static_cast<int>(v2.size()); i++)//put all of v2 back into the end staff data file
 	{
 		temp = v2.at(i);
 		output << temp;
@@ -138,7 +138,7 @@ void createTextFile()
 
 	ofstream output;
 	output.open("Staff_Data.txt");
-	for (int i = 0; i < v1.size(); i++)//put vectors into file
+	for (int i = 0; i < static_cast<int>(v1.size()); i++)//put vectors into file
 	{
 		temp = v1.at(i);
 		output << temp;
@@ -187,7 +187,7 @@ void createUsernameFile()
 
 	ofstream output;
 	output.open("Staff_Usernames.txt");
-	for (int i = 0; i < v1.size(); i++)//put into file rotating vectors
+	for (int i = 0; i < static_cast<int>(v1.size()); i++)//put into file rotating vectors
 	{
 		temp = v1.at(i);
 		output << temp;
@@ -206,14 +206,14 @@ void createUsernameFile()
 
 
 //login functions NOT COMPLETE, MAKE AN EXCEPTION FOR WHEN PASSWORDS DONT MATCH!!
-Staff logInfo(string username, string password)
+Staff staffLogin(string username, string password)
 {
 	ifstream input("Staff_Usernames.txt");//open the usernames and password file (order of info is index, username, password)
 	//look for the username
 	int i = 0;
 	string inUsername;
-	int staffIndex;
-	bool match = false;
+	//int staffIndex; Unused variable 
+	//bool match = false; Unused variable
 	while (getline(input, inUsername, ' '))
 	{
 
@@ -233,13 +233,13 @@ Staff logInfo(string username, string password)
 
 
 					for (int j = 0; j < maxIndices; j++)
-						userData[j] = getUserInfo(true, 0, index, j);
+						userData[j] = getUserInfo(/*true,*/ 0, index, j);
 
 
 					for (int j = 0; j < staffMaxIndices; j++)
-						staffData[j] = getStaffInfo(true, index, j);
+						staffData[j] = getStaffInfo(/*true,*/ index, j);
 
-					return Staff(true, index, userData, staffData);
+					return Staff(index, userData, staffData);
 				}
 				//}
 				//catch() PASSWORDS DONT MATCH

@@ -10,7 +10,7 @@ const int managerMaxIndices = 3;
 
 class Manager : public Staff
 {
-    Manager(bool canCreateStaff, int staffIndex, string userData[], string staffData[]);
+    Manager(int staffIndex, string userData[], string staffData[]);
 
     ~Manager()
     {

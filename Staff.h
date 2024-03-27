@@ -15,7 +15,7 @@ protected:
 
 public:
 	Staff();
-	Staff(bool canCreateStaff, int staffIndex, string userData[], string staffData[]);
+	Staff(int staffIndex, string userData[], string staffData[]);
 	~Staff(){}
 	string getPosition();
 	string getScheduleGroup();

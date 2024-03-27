@@ -1,6 +1,6 @@
 #include "Inmate.h"
 
-Inmate::Inmate(bool canCreateStaff, int userIndex, string userData[], string inmateData[])
+Inmate::Inmate(int userIndex, string userData[], string inmateData[])
 {
 		//inmate fields
 		lawyerName = inmateData[1];

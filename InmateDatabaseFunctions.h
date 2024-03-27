@@ -7,12 +7,12 @@
 
 using namespace std;
 
-string getInmateInfo(bool canGetInmateInfo, int inmateIndex, int fieldIndex)//inmate index= file row, field index= file column
+string getInmateInfo(int inmateIndex, int fieldIndex)//inmate index= file row, field index= file column
 {
 	string data = "ERROR: NO DATA FOUND (getInmateInfo)";//assigned a string to ensure that something is returned
 	//try {
 	ifstream input("Inmate_Data.txt");//open the inamte data file
-	for (int i = 0; i <= inmateIndex; i = i++)//iterate for every row until the inmate index is reached
+	for (int i = 0; i <= inmateIndex; i++)//iterate for every row until the inmate index is reached
 	{
 		string unused;//throwaway string to iterate inputs
 		if (i == inmateIndex)//if the current index is the desired inmate row
@@ -33,7 +33,7 @@ string getInmateInfo(bool canGetInmateInfo, int inmateIndex, int fieldIndex)//in
 
 	return data;
 }
-void setInmateInfo(bool canSetInmateInfo, int inmateIndex, int fieldIndex, string newData)
+void setInmateInfo(int inmateIndex, int fieldIndex, string newData)
 {
 
 	vector<string> v1;//vector for first half of data
@@ -89,14 +89,14 @@ void setInmateInfo(bool canSetInmateInfo, int inmateIndex, int fieldIndex, strin
 	//recreate inmate data file
 	ofstream output;
 	output.open("Inmate_Data.txt");
-	for (int i = 0; i < v1.size(); i++)//put all of v1 back into the inmate data file
+	for (int i = 0; i < static_cast<int>(v1.size()); i++)//put all of v1 back into the inmate data file
 	{
 		temp = v1.at(i);
 		output << temp;
 	}
 	output << newData;//put the new info into the file
 	output << ' ';
-	for (int i = 0; i < v2.size(); i++)//put all of v2 back into the end inmate data file
+	for (int i = 0; i < static_cast<int>(v2.size()); i++)//put all of v2 back into the end inmate data file
 	{
 		temp = v2.at(i);
 		output << temp;
@@ -106,14 +106,14 @@ void setInmateInfo(bool canSetInmateInfo, int inmateIndex, int fieldIndex, strin
 	//catch() ACCESS DENIED: MISSING EDIT PERMISSIONS
 }
 
-Inmate logInfo(string username, string password)
+Inmate inmateLogin(string username, string password)
 {
 		ifstream input("Inmate_Usernames.txt");//open the usernames and password file (order of info is: index, username, password)
 		//look for the username
 		int i = 0;
 		string inUsername;
-		int staffIndex;
-		bool match = false;
+		//int staffIndex; unused variable 
+		//bool match = false; unused variable 
 		while (getline(input, inUsername, ' '))
 		{
 
@@ -133,13 +133,13 @@ Inmate logInfo(string username, string password)
 
 
 						for (int j = 0; j < maxIndices; j++)
-							userData[j] = getUserInfo(true, 0, index, j);
+							userData[j] = getUserInfo(0, index, j);
 
 
 						for (int j = 0; j < inmateMaxIndices; j++)
-							inmateData[j] = getInmateInfo(true, index, j);
+							inmateData[j] = getInmateInfo(index, j);
 
-						return Inmate(true, index, userData, inmateData);
+						return Inmate(index, userData, inmateData);
 					}
 					//}
 					//catch() PASSWORDS DONT MATCH

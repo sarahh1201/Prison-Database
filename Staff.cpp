@@ -5,7 +5,7 @@ Staff::Staff()
 	position="N/A";
 	scheduleGroup="N/A";
 }
-Staff::Staff(bool canCreateStaff, int userIndex, string userData[], string staffData[])
+Staff::Staff(int userIndex, string userData[], string staffData[])
 {
 	//staff fields
 	position = staffData[1];

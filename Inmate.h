@@ -6,7 +6,6 @@
 using namespace std;
 
 const int inmateMaxIndices = 9;
-
 class Inmate : public User
 {
 protected:
@@ -25,7 +24,7 @@ public:
 	//~Inmate();
 	//void deleteInmate(bool canCreateInmate);
 	//string remainingSentence();//permissions bool name required
-	Inmate(bool canCreateStaff, int userIndex, string userData[], string inmateData[]);
+	Inmate(int userIndex, string userData[], string inmateData[]);
 
 	string getLawyerName();
 	string getSentenceLength();
