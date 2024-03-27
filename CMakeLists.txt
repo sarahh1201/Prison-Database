@@ -24,4 +24,5 @@ add_executable(SENG1210_Prison_Database
         V4/V4_User.cpp
         V4/V4_User.h
         V4/V4_UserDatabaseFunctions.h
-        V4/WelcomePageWithSchedule.cpp)
+        V4/WelcomePageWithSchedule.cpp
+        V4/WelcomePage.h)
