@@ -12,7 +12,7 @@ string getInmateInfo(int inmateIndex, int fieldIndex)//inmate index= file row, f
 	string data = "ERROR: NO DATA FOUND (getInmateInfo)";//assigned a string to ensure that something is returned
 	//try {
 	ifstream input("Inmate_Data.txt");//open the inamte data file
-	for (int i = 0; i <= inmateIndex; i = i++)//iterate for every row until the inmate index is reached
+	for (int i = 0; i <= inmateIndex; i++)//iterate for every row until the inmate index is reached
 	{
 		string unused;//throwaway string to iterate inputs
 		if (i == inmateIndex)//if the current index is the desired inmate row
@@ -89,14 +89,14 @@ void setInmateInfo(int inmateIndex, int fieldIndex, string newData)
 	//recreate inmate data file
 	ofstream output;
 	output.open("Inmate_Data.txt");
-	for (int i = 0; i < v1.size(); i++)//put all of v1 back into the inmate data file
+	for (int i = 0; i < static_cast<int>(v1.size()); i++)//put all of v1 back into the inmate data file
 	{
 		temp = v1.at(i);
 		output << temp;
 	}
 	output << newData;//put the new info into the file
 	output << ' ';
-	for (int i = 0; i < v2.size(); i++)//put all of v2 back into the end inmate data file
+	for (int i = 0; i < static_cast<int>(v2.size()); i++)//put all of v2 back into the end inmate data file
 	{
 		temp = v2.at(i);
 		output << temp;
@@ -112,8 +112,8 @@ Inmate inmateLogin(string username, string password)
 		//look for the username
 		int i = 0;
 		string inUsername;
-		int staffIndex;
-		bool match = false;
+		//int staffIndex; unused variable 
+		//bool match = false; unused variable 
 		while (getline(input, inUsername, ' '))
 		{
 
