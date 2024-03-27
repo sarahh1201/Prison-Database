@@ -9,7 +9,6 @@ using namespace std;
 const int permissionsMax = 10;//permissions bool size
 const int maxIndices = 5;//max number of columns per user in text file
 const int maxUsernameFileIndex = 3;//max number of columns in username files
-const int inmateMaxIndices = 9;
 
 int inmateCount = 20;//default starter value to edit
 int staffCount = 20;//default starter value to edit
