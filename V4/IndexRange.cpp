@@ -1,17 +1,17 @@
-#include<iostream>
+/*#include<iostream>
 #include<fstream>
 #include<vector>
 
 using namespace std;
 
 void processFile(const string& filename){
-    if(!file.is_open()){
+    if(!filename.is_open()){
         throw EntryException("Unable to open file");
     }
 
     vector<string> lines;
     string line;
-    while(getline(file, line)){
+    while(getline(filenmae, line)){
      try{
             lines.push_back(line);
      }
@@ -25,3 +25,4 @@ int main() {
     processFile("example.txt");
     return 0;
 }
+*/
