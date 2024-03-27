@@ -20,7 +20,17 @@ Inmate::Inmate(int userIndex, string userData[], string inmateData[])
 	govID = userData[3];
 	userID = userData[4];
 }
-
+Inmate::Inmate()
+{
+	lawyerName = "errorLawyerName";
+	sentenceLength = "errorSentenceLength";
+	probationDate = "errorProbationDate";
+	incarDate = "errorIncarDate";//incaceration date
+	cellNum = "errorCellNum";
+	cellBlock = "errorCellBlock";
+	roommateID = "errorRoommateID";
+	scheduleGroup = "errorScheduleGroup";
+}
 void Inmate::save()
 {
 
