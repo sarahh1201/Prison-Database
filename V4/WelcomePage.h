@@ -489,4 +489,8 @@ void displaySchedule(const string& filename) {
         cerr << "Failed to open file: " << filename << endl;
     }
 }
+<<<<<<< HEAD:V4/WelcomePage.h
 */
+=======
+ */
+>>>>>>> 3c844678feaa944eae043a2f63d1208f88cecd18:V4/WelcomePageWithSchedule.cpp

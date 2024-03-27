@@ -12,7 +12,7 @@ void processFile(const string& filename){
 
     vector<string> lines;
     string line;
-    while(getline(filename, line)){
+    while(getline(file, line)){
      try{
             lines.push_back(line);
      }
@@ -25,4 +25,4 @@ void processFile(const string& filename){
 int main() {
     processFile("example.txt");
     return 0;
-}*/
+}
