@@ -1,16 +1,6 @@
 #include "V4_Inmate.h"
+#include "V4_InmateDatabaseFunctions.h"
 
-Inmate::Inmate()
-{
-	lawyerName = "N/A";
-	sentenceLength = "N/A";
-	probationDate = "N/A";
-	incarDate = "N/A";//incaceration date
-	cellNum = "N/A";
-	cellBlock = "N/A";
-	roommateID = "N/A";
-	scheduleGroup = "N/A";
-}
 Inmate::Inmate(int userIndex, string userData[], string inmateData[])
 {
 	//inmate fields
@@ -30,6 +20,50 @@ Inmate::Inmate(int userIndex, string userData[], string inmateData[])
 	password = "password";//default setting, if changed then username will be updated
 	govID = userData[3];
 	userID = userData[4];
+}
+
+void Inmate::save()
+{
+
+	int userIndex = getUserIndex();
+
+	//save username if it has been updated
+	if (getUsername() != "username")
+	{
+		if (getUsername() == "errorusername")//default username, error has occured if present
+		{
+			cout << "\nInmate Error encountered. Please log out or correct username. Did not successfully save.";
+			return;
+		}
+		setUsernameInfo(1, userIndex, 1, getUsername());
+	}
+
+	//save password if it has been updated
+	if (getPassword() != "password")
+	{
+		if (getUsername() == "errorpassword")//default password, error has occured if present
+		{
+			cout << "\nInmate Error encountered. Please log out or correct password. Did not successfully save.";
+			return;
+		}
+		setUsernameInfo(1, userIndex, 2, getPassword());
+	}
+
+	setInmateInfo(userIndex, 1, getLawyerName());
+	setInmateInfo(userIndex, 2, getSentenceLength());
+	setInmateInfo(userIndex, 3, getProbationDate());
+	setInmateInfo(userIndex, 4, getIncarDate());
+	setInmateInfo(userIndex, 5, getCellNum());
+	setInmateInfo(userIndex, 6, getCellBlock());
+	setInmateInfo(userIndex, 7, getRoommateID());
+	setInmateInfo(userIndex, 8, getScheduleGroup());
+
+	setUserInfo(0, userIndex, 1, getFirstname());
+	setUserInfo(0, userIndex, 2, getLastname());
+	setUserInfo(0, userIndex, 3, getGovID());
+	setUserInfo(0, userIndex, 4, getUserID());
+
+	cout << "\nSaved";
 }
 
 //accessors
@@ -65,6 +99,7 @@ string Inmate::getScheduleGroup()
 {
 	return scheduleGroup;
 }
+
 
 //mutators
 void Inmate::setLawyerName(string lawyerName)
