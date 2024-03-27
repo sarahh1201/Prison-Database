@@ -7,12 +7,12 @@
 #include "UserDatabaseFunctions.h"
 using namespace std;
 
-string getManagerInfo(bool canGetManagerInfo, int managerIndex, int fieldIndex)//manager index= file row, field index= file column
+string getManagerInfo(int managerIndex, int fieldIndex)//manager index= file row, field index= file column
 {
 	string data = "ERROR: NO DATA FOUND (getManagerInfo)";//assigned a string to ensure that something is returned
 	//try {
 	ifstream input("Manager_Data.txt");//open the manager data file
-	for (int i = 0; i <= managerIndex; i = i++)//iterate for every row until the manager index is reached
+	for (int i = 0; i <= managerIndex; i++)//iterate for every row until the manager index is reached
 	{
 		string unused;//throwaway string to iterate inputs
 		if (i == managerIndex)//if the current index is the desired manager row
@@ -34,7 +34,7 @@ string getManagerInfo(bool canGetManagerInfo, int managerIndex, int fieldIndex)/
 	return data;
 }
 
-void setManagerInfo(bool canSetManagerInfo, int managerIndex, int fieldIndex, string newData)
+void setManagerInfo(int managerIndex, int fieldIndex, string newData)
 {
 	vector<string> v1;//vector for first half of data
 	string temp;//string to put input into vector
@@ -44,7 +44,7 @@ void setManagerInfo(bool canSetManagerInfo, int managerIndex, int fieldIndex, st
 //Save all of the data into vectors to update it
 	//save first half of data to a vector
 	ifstream input("Manager_Data.txt");
-	for (int i = 0; i <= managerIndex; i = i++)//iterate for every row until the staff index is reached
+	for (int i = 0; i <= managerIndex; i++)//iterate for every row until the staff index is reached
 	{
 		for (int j = 0; j < managerMaxIndices; j++)//iterate through columns
 		{
@@ -131,13 +131,13 @@ Manager managerLogin(string username, string password)
 
 
 					for (int j = 0; j < maxIndices; j++)
-						userData[j] = getUserInfo(true, 0, index, j);
+						userData[j] = getUserInfo(0, index, j);
 
 
 					for (int j = 0; j < managerMaxIndices; j++)
-						managerData[j] = getManagerInfo(true, index, j);
+						managerData[j] = getManagerInfo(index, j);
 
-					return Manager(true, index, userData, managerData);
+					return Manager(index, userData, managerData);
 				}
 				//}
 				//catch() PASSWORDS DONT MATCH

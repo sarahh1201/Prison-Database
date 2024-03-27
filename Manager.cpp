@@ -2,7 +2,7 @@
 
 
 
-Manager::Manager(bool canCreateStaff, int staffIndex, string userData[], string managerData[])
+Manager::Manager(int staffIndex, string userData[], string managerData[])
 {
 	//manager fields (same as a staff object)
 	position = managerData[1];

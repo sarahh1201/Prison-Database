@@ -7,7 +7,7 @@
 
 using namespace std;
 
-string getInmateInfo(bool canGetInmateInfo, int inmateIndex, int fieldIndex)//inmate index= file row, field index= file column
+string getInmateInfo(int inmateIndex, int fieldIndex)//inmate index= file row, field index= file column
 {
 	string data = "ERROR: NO DATA FOUND (getInmateInfo)";//assigned a string to ensure that something is returned
 	//try {
@@ -33,7 +33,7 @@ string getInmateInfo(bool canGetInmateInfo, int inmateIndex, int fieldIndex)//in
 
 	return data;
 }
-void setInmateInfo(bool canSetInmateInfo, int inmateIndex, int fieldIndex, string newData)
+void setInmateInfo(int inmateIndex, int fieldIndex, string newData)
 {
 
 	vector<string> v1;//vector for first half of data
@@ -133,13 +133,13 @@ Inmate inmateLogin(string username, string password)
 
 
 						for (int j = 0; j < maxIndices; j++)
-							userData[j] = getUserInfo(true, 0, index, j);
+							userData[j] = getUserInfo(0, index, j);
 
 
 						for (int j = 0; j < inmateMaxIndices; j++)
-							inmateData[j] = getInmateInfo(true, index, j);
+							inmateData[j] = getInmateInfo(index, j);
 
-						return Inmate(true, index, userData, inmateData);
+						return Inmate(index, userData, inmateData);
 					}
 					//}
 					//catch() PASSWORDS DONT MATCH

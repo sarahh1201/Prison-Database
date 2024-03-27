@@ -10,7 +10,7 @@ using namespace std;
 
 
 
-string getStaffInfo(/*bool canGetStaffInfo,*/ int staffIndex, int fieldIndex)//staff index= file row, field index= file column
+string getStaffInfo(int staffIndex, int fieldIndex)//staff index= file row, field index= file column
 {
 	string data = "ERROR: NO DATA FOUND (getStaffInfo)";//assigned a string to ensure that something is returned
 	//try {
@@ -37,7 +37,7 @@ string getStaffInfo(/*bool canGetStaffInfo,*/ int staffIndex, int fieldIndex)//s
 	return data;
 }
 
-void setStaffInfo(/*bool canSetStaffInfo,*/ int staffIndex, int fieldIndex, string newData)
+void setStaffInfo(int staffIndex, int fieldIndex, string newData)
 {
 	vector<string> v1;//vector for first half of data
 	string temp;//string to put input into vector
@@ -239,7 +239,7 @@ Staff staffLogin(string username, string password)
 					for (int j = 0; j < staffMaxIndices; j++)
 						staffData[j] = getStaffInfo(/*true,*/ index, j);
 
-					return Staff(true, index, userData, staffData);
+					return Staff(index, userData, staffData);
 				}
 				//}
 				//catch() PASSWORDS DONT MATCH
