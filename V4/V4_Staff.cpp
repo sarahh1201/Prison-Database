@@ -48,6 +48,15 @@ string Staff::getScheduleGroup()
 	return scheduleGroup;
 }
 
+void Staff::setPosition(string position)
+{
+	this->position = position;
+}
+void Staff::setScheduleGroup(string scheduleGroup)
+{
+	this->scheduleGroup = scheduleGroup;
+}
+
 void Staff::deleteAccount(string username, int accountType)
 {
 
@@ -291,7 +300,6 @@ void Staff::createAccount(int accountType)
 	vector<string> objectData;
 	string userFile, dataFile;
 	string temp;
-	int maxDataIndex;
 	switch (accountType)//decide which file to pull from
 	{
 	case 0: {
