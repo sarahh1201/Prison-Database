@@ -23,12 +23,11 @@ protected:
 	//bool privileges[permissionsMax];//inmate specific privileges
 
 public:
-
-	//~Inmate();
+	Inmate();
+	~Inmate() {};
 	//void deleteInmate(bool canCreateInmate);
 	//string remainingSentence();//permissions bool name required
 	Inmate(int userIndex, string userData[], string inmateData[]);
-	Inmate();
 
 	void save();
 
@@ -90,13 +89,10 @@ public:
 			i++;
 		}
 		input.close();
+
 	}
 
-	//hasnt been tested, will also need to loop back to login screen. 
-	void inmateLogOut(Inmate* currentInmate)//delete the current object and return to login menu
-	{
-		delete currentInmate;
-	}
+
 
 };
 #endif
