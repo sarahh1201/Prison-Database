@@ -98,6 +98,76 @@ public:
 
 		return data;
 	}
+	string staffGetUsername(int userFileNumber, int memberIndex)
+	{
+		string data = "ERROR: NO DATA FOUND (staffgetUsername)";//assigned a string to ensure that something is returned
+		//try {
+		string filename;
+		//try{
+		switch (userFileNumber)//decide which file to pull from
+		{
+		case 0: {
+			filename += "Staff_Usernames.txt"; break;
+		}
+		case 1: {
+			filename += "Inmate_Usernames.txt"; break;
+		}
+		}
+		//}
+		//catch (FILE NUMBER OUT OF RANGE)
+		ifstream input(filename);//open the correct user data file
+		for (int i = 0; i <= memberIndex; i++)//iterate for every row until the user index is reached
+		{
+			string unused;//throwaway string to iterate inputs
+			if (i == memberIndex)//if the current index is the desired user row
+			{
+				for (int j = 0; j < maxUsernameFileIndex; j++)//iterate through columns
+					if (j == 1)//if current column is the correct field index
+						input >> data;//take input into data string
+					else//if incorrect column, put data into unused datafield;
+						input >> unused;
+			}
+			for (int j = 0; j < maxUsernameFileIndex; j++)//while i does not equal the user index, throw away each column entry
+				input >> unused;
+		}
+		input.close();
+		//}
+		//catch() FILE ACCESS EXCEPTION (incorrect permissions)
+		//catch() staff index out of range (tries to iterate past end of file)
+
+		return data;
+	}
+	int staffGetUserIndex(int userFileNumber, string data)
+	{
+		string usernameFile;
+		switch (userFileNumber)//decide which file to pull from
+		{
+		case 0: {
+			usernameFile += "Staff_Usernames.txt";
+			break;
+		}
+		case 1: {
+			usernameFile += "Inmate_Usernames.txt";
+			break;
+		}
+		}
+
+		string inUsername;
+		//find username
+		ifstream input(usernameFile);//open the usernames and password file (order of info is index, username, password)
+		int position = 0;
+		while (getline(input, inUsername, ' '))
+		{
+			if ((position % maxUsernameFileIndex) == 1)//skip every entry that is not usernames 
+				if (inUsername == username)//if the usernames match
+				{
+					return position/maxUsernameFileIndex;
+				}
+			position++;
+		}
+		return -1;
+	}
+
 
 	void setUserInfo(int userFileNumber, int memberIndex, int fieldIndex, string newData)
 	{
@@ -185,7 +255,6 @@ public:
 		//}
 		//catch() ACCESS DENIED: MISSING EDIT PERMISSIONS
 	}
-
 	void setUsernameInfo(int userFileNumber, int memberIndex, int fieldIndex, string newData)
 	{
 
@@ -278,7 +347,7 @@ public:
 		string data = "ERROR: NO DATA FOUND (getInmateInfo)";//assigned a string to ensure that something is returned
 		//try {
 		ifstream input("Inmate_Data.txt");//open the inamte data file
-		for (int i = 0; i <= inmateIndex; i++)//iterate for every row until the inmate index is reached
+		for (int i = 0; i <= inmateIndex; i = i++)//iterate for every row until the inmate index is reached
 		{
 			string unused;//throwaway string to iterate inputs
 			if (i == inmateIndex)//if the current index is the desired inmate row
@@ -299,7 +368,6 @@ public:
 
 		return data;
 	}
-
 	void setInmateInfo(int inmateIndex, int fieldIndex, string newData)
 	{
 
@@ -356,14 +424,14 @@ public:
 		//recreate inmate data file
 		ofstream output;
 		output.open("Inmate_Data.txt");
-		for (int i = 0; i < static_cast<int>(v1.size()); i++)//put all of v1 back into the inmate data file
+		for (int i = 0; i < v1.size(); i++)//put all of v1 back into the inmate data file
 		{
 			temp = v1.at(i);
 			output << temp;
 		}
 		output << newData;//put the new info into the file
 		output << ' ';
-		for (int i = 0; i < static_cast<int>(v2.size()); i++)//put all of v2 back into the end inmate data file
+		for (int i = 0; i < v2.size(); i++)//put all of v2 back into the end inmate data file
 		{
 			temp = v2.at(i);
 			output << temp;
@@ -372,6 +440,74 @@ public:
 		//}
 		//catch() ACCESS DENIED: MISSING EDIT PERMISSIONS
 	}
+
+	bool newUsername(int userFileNumber, string username)//return true if username does not exsit on file
+	{
+		string usernameFile;
+		switch (userFileNumber)//decide which file to pull from
+		{
+		case 0: {
+			usernameFile += "Staff_Usernames.txt";
+			break;
+		}
+		case 1: {
+			usernameFile += "Inmate_Usernames.txt";
+			break;
+		}
+		}
+
+		string inUsername;
+		//find username
+		bool match = false;
+		ifstream input(usernameFile);//open the usernames and password file (order of info is index, username, password)
+		int position = 0;
+		int index = 0;
+		while (getline(input, inUsername, ' '))
+		{
+			if ((position % maxUsernameFileIndex) == 1)//skip every entry that is not usernames 
+				if (inUsername == username)//if the usernames match
+				{
+					match = true;//set match to true to allow loop to continue once
+				}
+			position++;
+		}
+		return match;
+	}
+
+	/*
+	int findUserIndex(int userFileNumber, string username)
+	{
+		string usernameFile;
+		switch (userFileNumber)//decide which file to pull from
+		{
+		case 0: {
+			usernameFile += "Staff_Usernames.txt";
+			break;
+		}
+		case 1: {
+			usernameFile += "Inmate_Usernames.txt";
+			break;
+		}
+		}
+
+		string inUsername;
+
+		//find username
+		ifstream input(usernameFile);//open the usernames and password file (order of info is index, username, password)
+		int position = 0;
+		int index = 0;
+		while (getline(input, inUsername, ' '))
+		{
+			if ((position % maxUsernameFileIndex) == 1)//skip every entry that is not usernames 
+				if (inUsername == username)//if the usernames match
+				{
+					//return = true;//set match to true to allow loop to continue once
+				}
+			position++;
+		}
+		return -1;
+	}
+	*/
 
 private:
 	void Check(string entry); //Check password
