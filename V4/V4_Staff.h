@@ -19,6 +19,8 @@ public:
 	~Staff() {}
 	string getPosition();
 	string getScheduleGroup();
+	void setPosition(string position);
+	void setScheduleGroup(string scheduleGroup);
 	void deleteAccount(string username, int accountType);
 	void createAccount(int accountType);
 
@@ -40,7 +42,7 @@ public:
 					input >> inPassword;//take in the next entry into passwords
 					i++;
 					if (inPassword == password)//if the passwords match
-					{
+					{ 
 						int index = i / maxUsernameFileIndex;
 						input.close();
 						string userData[maxIndices];
@@ -63,14 +65,7 @@ public:
 		return Staff();
 	}
 
-	//hasnt been tested, will also need to loop back to login screen. 
-	void staffLogOut(Staff* currentStaff)//delete the current object and return to login menu
-	{
-		delete currentStaff;
-	}
-	
-
-	string getStaffInfo(/*bool canGetStaffInfo,*/ int staffIndex, int fieldIndex)//staff index= file row, field index= file column
+	string getStaffInfo(int staffIndex, int fieldIndex)//staff index= file row, field index= file column
 	{
 		string data = "ERROR: NO DATA FOUND (getStaffInfo)";//assigned a string to ensure that something is returned
 		//try {
@@ -96,8 +91,7 @@ public:
 
 		return data;
 	}
-
-	void setStaffInfo(/*bool canSetStaffInfo,*/ int staffIndex, int fieldIndex, string newData)
+	void setStaffInfo(int staffIndex, int fieldIndex, string newData)
 	{
 		vector<string> v1;//vector for first half of data
 		string temp;//string to put input into vector
@@ -171,6 +165,7 @@ public:
 
 	void operator=(Staff newStaff)
 	{
+		userIndex = newStaff.getUserIndex();
 		position = newStaff.getPosition();
 		scheduleGroup = newStaff.getScheduleGroup();
 		firstname = newStaff.getFirstname();
@@ -179,7 +174,7 @@ public:
 		password = newStaff.getPassword();
 		govID = newStaff.getGovID();
 		userID = newStaff.getUserID();
-		userIndex = newStaff.getUserIndex();
+	
 	}
 };
 #endif
