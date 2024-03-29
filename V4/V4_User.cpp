@@ -1,5 +1,4 @@
 #include "V4_User.h"
-using namespace std;
 //#include "EntryException.h"
 
 User::User()
@@ -12,6 +11,7 @@ User::User()
 	userID = "erroruserID";
 	userIndex = 0;
 }
+
 
 //accessors
 string User::getFirstname()
