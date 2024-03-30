@@ -1,0 +1,2 @@
+staff default default 0 0 1
+joshua joshma password 50 35 1
