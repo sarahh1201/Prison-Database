@@ -1,3 +1,4 @@
+/*
 #pragma once
 #ifndef V4_INMATEDATABASEFUNCTIONS_H
 #define V4_INMATEDATABASEFUNCTIONS_H
@@ -158,3 +159,4 @@ void inmateLogOut(Inmate* currentInmate)//delete the current object and return t
 }
 
 #endif
+*/
