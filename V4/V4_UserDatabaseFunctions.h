@@ -1,3 +1,4 @@
+/*
 #pragma once
 #ifndef V4_USERDATABASEFUNCTIONS_H
 #define V4_USERDATABASEFUNCTIONS_H
@@ -7,7 +8,7 @@
 #include <vector>
 
 
-string getUserInfo(/*bool canGetUserInfo,*/ int userFileNumber, int memberIndex, int fieldIndex)
+string getUserInfo( int userFileNumber, int memberIndex, int fieldIndex)
 {
 	string data = "ERROR: NO DATA FOUND (getUserInfo)";//assigned a string to ensure that something is returned
 	//try {
@@ -47,7 +48,7 @@ string getUserInfo(/*bool canGetUserInfo,*/ int userFileNumber, int memberIndex,
 	return data;
 }
 
-void setStaffInfo(/*bool canSetStaffInfo,*/ int userFileNumber, int memberIndex, int fieldIndex, string newData)
+void setStaffInfo( int userFileNumber, int memberIndex, int fieldIndex, string newData)
 {
 
 	string filename;
@@ -218,3 +219,4 @@ void createUserFile(int userFileNumber)
 	output.close();
 }
 #endif
+*/
