@@ -26,9 +26,10 @@ int main()
 void welcome()
 {
     //Main welcome page
-    cout << "Welcome!" <<endl;
-    cout << "1. Login " <<endl;
-    cout << "2. Exit " <<endl;
+    allBorders("Welcome!");
+    cout << endl;
+    topBorders("1. Login");
+    bottomBorders("2. Exit");
 
     int option;
     cin >> option;
@@ -45,7 +46,9 @@ void welcome()
         {
             clearScreen();
             int view;
-            cout << "1. Prisoner \n2. Staff \n3. Manager" << endl;
+            topBorders("1. Prisoner");
+            midBorders("2. Staff");
+            bottomBorders("3. Manager");
             cin >> view;
 
             while (option!=1&&option!=2&&option!=3)
@@ -98,11 +101,11 @@ void prisonerView(string& user)
     cout << endl;
 
     //Manager selection menu
-    cout << "\nSelect an option: " <<endl;
-    cout << "1. Prisoner info";
-    cout << "\n2. View schedule"
-         << "\n3. Logout"
-         << endl;
+    allBorders("Select an option:");
+    cout << endl;
+    topBorders("1. Prisoner info");
+    midBorders("2. View schedule");
+    bottomBorders("3. Logout");
 
     cout << "Option: ";
     int option;
@@ -190,11 +193,11 @@ void staffView(string& user) {
     }
 
     //Manager selection menu
-    cout << "\nSelect an option: " << endl;
-    cout << "1. Prisoner info"
-         << "\n2. View Schedule"
-         << "\n3. Logout"
-         << endl;
+    allBorders("Select an option:");
+    cout << endl;
+    topBorders("1. Prisoner info");
+    midBorders("2. View schedule");
+    bottomBorders("3. Logout");
 
     cout << "Option: ";
     int option;
@@ -279,16 +282,17 @@ void managerView(string &user) {
         for (int i = 0; i < 4; i++) {
             cout << "Block " << (char) blocks[0][i] << ": " << blocks[1][i] << endl;
         }
+        cout << endl;
 
         //Manager selection menu
-        cout << "\nSelect an option: " << endl;
-        cout << "1. View Schedule"
-             << "\n2. Personal info"
-             << "\n3. Prisoner info"
-             << "\n4. Manage People"
-             << "\n5. Logout"
-             << endl;
-
+        allBorders("Select an option:");
+        cout << endl;
+        topBorders("1. View Schedule");
+        midBorders("2. Personal info");
+        midBorders("3. Prisoner info");
+        midBorders("4. Manage People");
+        bottomBorders("5. Logout");
+        
         cout << "Option: ";
         int option;
         cin >> option;

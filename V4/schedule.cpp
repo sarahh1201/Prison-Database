@@ -51,7 +51,8 @@ int main() {
     string filename = "Schedule.txt";
 
     // set values for NumberOne and NumberTwo
-    switch //( add conditions for the schedule groups ) {
+    switch //( add conditions for the schedule groups ) 
+    {
         case 0: {
          // staff schedule 1
             NumberOne = 0;
