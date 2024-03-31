@@ -926,7 +926,21 @@ void staffView(string& user, Staff& object) {//---------------------------------
         }
         case 5://create an account
         {
-
+            clearScreen();
+            cout << "Please enter the type of account you are creating. (1: Inmate, 2: Staff, 3: Exit): ";
+            int accType;
+            cin >> accType;
+            string temp;
+            while (accType < 1 || accType>3)
+            {
+                cout << "\Invalid input. Please try again.";
+                cin >> accType;
+            }
+            if (accType == 3)
+                staffView(user, object);
+            object.createAccount(accType-1);
+            staffView(user, object);
+            break;
         }
         case 6: //Return to staff view
         {
@@ -1207,10 +1221,12 @@ int main()
                     user = user.inmateLogin(name, password);
                     if(user.getUserID()!="erroruserID")
                         prisonerView(name, user);
-                    cout << "\nIncorrect password. Enter a number to continue.";
-                    int cont;
-                    cin >> cont;
-                    clearScreen();
+                    else if (user.getUserID() == "erroruserID")
+                    {
+                        cout << "\nIncorrect password. Enter a number to continue.";
+                        int cont;
+                        cin >> cont;
+                    }
                     clearScreen();
                     break;
                 }
@@ -1220,9 +1236,12 @@ int main()
                     user = user.staffLogin(name, password);
                     if (user.getUserID() != "erroruserID")
                         staffView(name, user);
-                    cout << "\nIncorrect password. Enter a number to continue.";
-                    int cont;
-                    cin >> cont;
+                    else if (user.getUserID() == "erroruserID")
+                    {
+                        cout << "\nIncorrect password. Enter a number to continue.";
+                        int cont;
+                        cin >> cont;
+                    }
                     clearScreen();
                     break;
                 }
@@ -1232,9 +1251,12 @@ int main()
                     user = user.staffLogin(name, password);
                     if (user.getUserID() != "erroruserID")
                         managerView(name);
-                    cout << "\nIncorrect password. Enter a number to continue.";
-                    int cont;
-                    cin >> cont;
+                    else if (user.getUserID() == "erroruserID")
+                    {
+                        cout << "\nIncorrect password. Enter a number to continue.";
+                        int cont;
+                        cin >> cont;
+                    }
                     clearScreen();
                     break;
                 }
