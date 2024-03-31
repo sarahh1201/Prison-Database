@@ -47,11 +47,10 @@ void welcome()
             clearScreen();
             int view;
             topBorders("1. Prisoner");
-            midBorders("2. Staff");
-            bottomBorders("3. Manager");
+            bottomBorders("2. Staff");
             cin >> view;
 
-            while (option!=1&&option!=2&&option!=3)
+            while (option!=1&&option!=2)
             {
                 cout << "Invalid input. Please enter a valid option" <<endl;
                 cin >> view;
@@ -90,21 +89,6 @@ void welcome()
                     else if (user.getUserID() == "erroruserID")
                     {
                         cout << "\\nUsername or password incorrect. Enter any key to continue.";
-                        string cont;
-                        cin >> cont;
-                    }
-                    clearScreen();
-                    break;
-            }
-            else if(view==3)
-            {
-                Staff user;
-                    user = user.staffLogin(name, password);
-                    if (user.getUserID() != "erroruserID")
-                        managerView(name);
-                    else if (user.getUserID() == "erroruserID")
-                    {
-                        cout << "\nUsername or password incorrect. Enter any key to continue.";
                         string cont;
                         cin >> cont;
                     }
@@ -746,185 +730,6 @@ void staffView(string& user,Staff& object) {
     }
     }
 }
-void managerView(string &user) {
-        clearScreen();
-        colourize("Welcome ", 36), colourize(user, 36), colourize("!", 36);
-
-        displayBlocks(); //Cell block info
-        cout << endl;
-
-        //Manager selection menu
-        allBorders("Select an option:");
-        cout << endl;
-        topBorders("1. View Schedule");
-        midBorders("2. Personal info");
-        midBorders("3. Prisoner info");
-        midBorders("4. Manage People");
-        bottomBorders("5. Logout");
-        
-        cout << "Option: ";
-        int option;
-        cin >> option;
-
-        while (option != 1 && option != 2 && option != 3 && option != 4 && option != 5) {
-            cout << "Invalid input." << endl;
-            cin >> option;
-        }
-
-        switch (option) {
-            case 1:
-            {
-            clearScreen();
-                string filename = "ManagerSchedule.txt";
-                displaySchedule(filename);
-
-                cout << "Enter 1 to go back: ";
-                int exit;
-                cin>>exit;
-            
-                while(exit!=1) 
-                {
-                    clearScreen();
-                    displaySchedule(filename);
-                    cout << "Invalid input!" <<endl;
-                    cout << "Enter 1 to go back: ";
-                    cin >> exit;
-                }
-                if(exit==1)
-                {
-                    clearScreen();
-                    managerView(user);
-                }
-
-                break;
-            }
-            case 2: //Personal info
-            {
-                //Personal info function
-                cout << "Enter 1 to go back: ";
-                int exit;
-                cin>>exit;
-            
-                while(exit!=1) 
-                {
-                    clearScreen();
-                    cout << "Invalid input!" <<endl;
-                    cout << "Enter 1 to go back: ";
-                    cin >> exit;
-                }
-                if(exit==1)
-                {
-                    clearScreen();
-                    managerView(user);
-                }
-                break;
-            }
-            case 3: //Prisoner info
-            {
-                //Call prisoner function
-
-                cout << "Enter 1 to go back: ";
-                int exit;
-                cin>>exit;
-            
-                while(exit!=1) 
-                {
-                    clearScreen();
-                    cout << "Invalid input!" <<endl;
-                    cout << "Enter 1 to go back: ";
-                    cin >> exit;
-                }
-                if(exit==1)
-                {
-                    clearScreen();
-                    managerView(user);
-                }
-                
-                break;
-            }
-            case 4: // Manage People
-            {
-                clearScreen();
-                int manage;
-                cout << "1. Prisoners"
-                << "\n2. Staff"<<endl;
-                cin >> manage;
-
-                while (manage != 1 && manage != 2) {
-                cout << "Invalid input." << endl;
-                cin >> manage;
-                }
-
-                switch (manage)
-                {
-                case 1:
-                {
-                    clearScreen();
-                    // Prisoners
-
-                cout << "Enter 1 to go back: ";
-                int exit;
-                cin>>exit;
-            
-                while(exit!=1) 
-                {
-                    clearScreen();
-                    cout << "Invalid input!" <<endl;
-                    cout << "Enter 1 to go back: ";
-                    cin >> exit;
-                }
-                if(exit==1)
-                {
-                    clearScreen();
-                    managerView(user);
-                }
-                   break; 
-                }
-                case 2:
-                {
-                    clearScreen();
-                    //Staff
-
-                cout << "Enter 1 to go back: ";
-                int exit;
-                cin>>exit;
-            
-                while(exit!=1) 
-                {
-                    clearScreen();
-                    cout << "Invalid input!" <<endl;
-                    cout << "Enter 1 to go back: ";
-                    cin >> exit;
-                }
-                if(exit==1)
-                {
-                    clearScreen();
-                    managerView(user);
-                }
-                    break;
-                }
-                
-                default:
-                {
-                    clearScreen();
-                    managerView(user);
-                    break;
-                }
-                }
-
-                //Call edit function
-                break;
-            }
-            case 5: //Logout of account and returns user back to welcome page
-            {
-                    clearScreen();
-                    welcome();
-                    break;
-            }
-            }
-        }    
-
-
 
 // display schedule for the specific range
 void displaySchedule(string filename, char scheduleType, int startLine, int endLine) {
