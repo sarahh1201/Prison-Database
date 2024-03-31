@@ -561,6 +561,7 @@ void staffView(string& user, Staff& object) {//---------------------------------
         {
         case 1: //Edit personal data
         {
+            clearScreen();
             char ans = 'x';
             do {
                 cout << "Select a field to edit: "
@@ -1223,8 +1224,8 @@ int main()
                         prisonerView(name, user);
                     else if (user.getUserID() == "erroruserID")
                     {
-                        cout << "\nIncorrect password. Enter a number to continue.";
-                        int cont;
+                        cout << "\nUsername or password incorrect. Enter any key to continue.";
+                        string cont;
                         cin >> cont;
                     }
                     clearScreen();
@@ -1238,8 +1239,8 @@ int main()
                         staffView(name, user);
                     else if (user.getUserID() == "erroruserID")
                     {
-                        cout << "\nIncorrect password. Enter a number to continue.";
-                        int cont;
+                        cout << "\\nUsername or password incorrect. Enter any key to continue.";
+                        string cont;
                         cin >> cont;
                     }
                     clearScreen();
@@ -1253,8 +1254,8 @@ int main()
                         managerView(name);
                     else if (user.getUserID() == "erroruserID")
                     {
-                        cout << "\nIncorrect password. Enter a number to continue.";
-                        int cont;
+                        cout << "\nUsername or password incorrect. Enter any key to continue.";
+                        string cont;
                         cin >> cont;
                     }
                     clearScreen();
