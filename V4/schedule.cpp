@@ -9,7 +9,7 @@ using namespace std;
 void displaySchedule(string filename, char scheduleType, int startLine, int endLine) {
     // set values based on schedule type
     switch (scheduleType) {
-        case '1': {
+        case '0': {
             // staff schedule 1
             startLine = 0;
             endLine = 7;
