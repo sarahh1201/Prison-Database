@@ -5,11 +5,43 @@
 
 using namespace std;
 
-int NumberOne;
-int NumberTwo;
-
 // display schedule for the specific range
-void displaySchedule(string filename, int startLine, int endLine) {
+void displaySchedule(string filename, char scheduleType, int startLine, int endLine) {
+    // set values based on schedule type
+    switch (scheduleType) {
+        case '1': {
+            // staff schedule 1
+            startLine = 0;
+            endLine = 7;
+            break;
+        }
+        case '1': {
+            // staff schedule 2
+            startLine = 8;
+            endLine = 150
+                    ;
+            break;
+        }
+        case '2': {
+            // inmate schedule 1
+            startLine = 16;
+            endLine = 232
+                    ;
+            break;
+        }
+        case '3': {
+            // inmate schedule 2
+            startLine = 25;
+            endLine = 32;
+            break;
+        }
+        default: {
+            // error message
+            cerr << "Invalid schedule type" << endl;
+            return;
+        }
+    }
+
     // open the file
     ifstream file(filename);
     if (file.is_open()) {
@@ -48,44 +80,13 @@ void displaySchedule(string filename, int startLine, int endLine) {
 }
 
 int main() {
-    string filename = "Schedule.txt";
-
-    // set values for NumberOne and NumberTwo
-    switch //( add conditions for the schedule groups ) 
-    {
-        case 0: {
-         // staff schedule 1
-            NumberOne = 0;
-            NumberTwo = 8;
-            break;
-        }
-        case 1: {
-        // staff schedule 2
-            NumberOne = 9;
-            NumberTwo = 17;
-            break;
-        }
-        case 2: {
-            // inmate schedule 1
-            NumberOne = 18;
-            NumberTwo = 26;
-            break;
-        }
-        case 3: {
-            // inmate schedule 2
-            NumberOne = 27;
-            NumberTwo = 35;
-            break;
-        }
-        default: {
-            // error message
-            cout << "Invalid" << endl;
-            return 1; // exit with error code
-        }
-    }
+    char scheduleType;
+    cout << "Enter schedule type (0-3): ";
+    cin >> scheduleType;
 
     // call displaySchedule with lines to display
-    displaySchedule(filename, NumberOne, NumberTwo);
+    displaySchedule("Schedule.txt", scheduleType, 0, 0);
 
     return 0;
 }
+
