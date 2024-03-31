@@ -425,7 +425,7 @@ void prisonerView(string& user, Inmate& object)
     }
 }
 void staffView(string& user, Staff& object) {//-------------------------------------------------STAFF VIEW-------------------------------
-    clearScreen();
+    //clearScreen();
     colourize("Welcome ", 34), colourize(user, 34), colourize("!", 34);
 
     int prisoners = 3600;
@@ -674,20 +674,21 @@ void staffView(string& user, Staff& object) {//---------------------------------
             if (!object.newUsername(1, data))
             {
                 int inmateIndex = object.staffGetUserIndex(1, data);
-                cout << "Select an option: "
-                    << "\n1. Username: " << object.staffGetUsername(1, inmateIndex)
-                    << "\n2. First Name:" << object.getUserInfo(1, inmateIndex, 1)
-                    << "\n3. Last Name:" << object.getUserInfo(1, inmateIndex, 2)
-                    << "\n4. Government ID: " << object.getUserInfo(1, inmateIndex, 3)
-                    << "\n5. User ID:" << object.getUserInfo(1, inmateIndex, 4)
-                    << "\n6. Lawyer Name:" <<object.getInmateInfo(inmateIndex, 1)
-                    << "\n7. Probation Date:" << object.getInmateInfo(inmateIndex, 2)
-                    << "\n8. Incarceration Date:" << object.getInmateInfo(inmateIndex, 3)
-                    << "\n9. Cell Number:" << object.getInmateInfo(inmateIndex, 4)
-                    << "\n10. Cell Block:" << object.getInmateInfo(inmateIndex, 5)
-                    << "\n11. Roommate ID:" << object.getInmateInfo(inmateIndex, 6)
-                    << "\n12. Schedule Group:" << object.getInmateInfo(inmateIndex, 7)
-                    << "\n13. Return" << endl;
+                clearScreen();
+                cout << "Select an option:";
+                cout << "\n1. Username: " << data;
+                cout << "\n2. First Name:" << object.getUserInfo(1, inmateIndex, 1);
+                cout << "\n3. Last Name:" << object.getUserInfo(1, inmateIndex, 2);
+                cout << "\n4. Government ID: " << object.getUserInfo(1, inmateIndex, 3);
+                cout << "\n5. User ID:" << object.getUserInfo(1, inmateIndex, 4);
+                cout << "\n6. Lawyer Name:" << object.getInmateInfo(inmateIndex, 1);
+                cout << "\n7. Probation Date:" << object.getInmateInfo(inmateIndex, 2);
+                cout << "\n8. Incarceration Date:" << object.getInmateInfo(inmateIndex, 3);
+                cout << "\n9. Cell Number:" << object.getInmateInfo(inmateIndex, 4);
+                cout << "\n10. Cell Block:" << object.getInmateInfo(inmateIndex, 5);
+                cout << "\n11. Roommate ID:" << object.getInmateInfo(inmateIndex, 6);
+                cout << "\n12. Schedule Group:" << object.getInmateInfo(inmateIndex, 7);
+                    cout << "\n13. Return" << endl;
 
                 cout << "Option: ";
                 cin >> option;
@@ -950,6 +951,8 @@ void staffView(string& user, Staff& object) {//---------------------------------
             break;
         }
         }
+        staffView(user, object);
+        break;
     }
     case 5: //Logout
     {
