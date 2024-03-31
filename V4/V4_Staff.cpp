@@ -4,16 +4,17 @@ void create(string userData[], vector<string> objectData, string username, strin
 {
 	string userIndex;
 	ofstream output;
-	output.open(usernameFile, ios::ate);
+	output.open(usernameFile, ios::app);
 	output << userData[0] << " " << username << " " << password << " ";
 	output.close();
 
-	output.open(userFile, ios::ate);
+	output.open(userFile, ios::app);
 	for (int i = 0; i < maxIndices; i++)
 		output << userData[i] << " ";
 	output.close();
 
-	output.open(dataFile, ios::ate);
+	output.open(dataFile, ios::app);
+	output << userData[0] << " ";
 	for (int i = 0; i < static_cast<int>(objectData.size()); i++)
 		output << objectData.at(i) << " ";
 	output.close();
@@ -398,21 +399,20 @@ void Staff::createAccount(int accountType)
 		userFile += "Staff_Users.txt";
 		dataFile += "Staff_Data.txt";
 		staffCount++;
-		userData[0] = staffCount - 1;
 		stringstream ss;
 		ss << (staffCount - 1);
-		objectData.push_back(ss.str());
+		userData[0] = ss.str();
+
 		cout << "\nPlease enter the staff member's position name: ";
 		cin >> temp;
 		objectData.push_back(temp);
 		cout << "\nPlease enter the staff schedule group: ";
 		cin >> temp;
 		objectData.push_back(temp);
-
 		break;
 	}
 	}
-
+	
 	create(userData, objectData, newUsername, p, usernameFile, userFile, dataFile);
 }
 
