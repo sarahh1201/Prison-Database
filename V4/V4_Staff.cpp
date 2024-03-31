@@ -48,13 +48,13 @@ string Staff::getScheduleGroup()
 	return scheduleGroup;
 }
 
-void Staff::setPosition(string position)
-{
-	this->position = position;
-}
 void Staff::setScheduleGroup(string scheduleGroup)
 {
 	this->scheduleGroup = scheduleGroup;
+}
+void Staff::setPosition(string position)
+{
+	this->position = position;
 }
 
 void Staff::deleteAccount(string username, int accountType)
@@ -102,7 +102,9 @@ void Staff::deleteAccount(string username, int accountType)
 
 	if (!match)//if no match was found, exit delete function
 	{
-		cout << "\nUsername " << username << "does not exist on file. Failed to delete account.";
+		cout << "\nUsername " << username << "does not exist on file. Failed to delete account. Enter 1 to exit.";
+		int go;
+		cin >> go;
 		return;
 	}
 
@@ -112,7 +114,7 @@ void Staff::deleteAccount(string username, int accountType)
 	case 1: {staffCount--; break; }
 	}
 
-	input.open(dataFile);
+	input.open(dataFile);//--------------------------------------------------------------SAVE AND RECREATE ACCOUNT TYPE DATA FILE---------------
 
 	vector<string> v1;//vector for first half of data
 	string temp;//string to put input into vector
@@ -134,16 +136,16 @@ void Staff::deleteAccount(string username, int accountType)
 		input >> temp;//throw away the line that is being deleted
 	}
 	//save second half of data to vector
-	position = index * maxDataIndex; //current position index 
+	position = (index+1) * maxDataIndex; //current position index 
 	while (getline(input, temp, ' '))
 	{
 		if ((position % maxDataIndex) == 0)//if the index field is reached, correct the index
 		{
 			stringstream ss;
+			input >> temp;
 			int p = position / maxDataIndex;
 			ss << p;
 			v2.push_back(ss.str());
-			v2.push_back(" ");//append space after
 		}
 		else//save regular data
 		{
@@ -171,7 +173,7 @@ void Staff::deleteAccount(string username, int accountType)
 	}
 	output.close();
 
-	input.open(userFile);
+	input.open(userFile);//-----------------------------------------SAVE AND RECREATE USER DATA FILE----------------------------------------
 
 	v1.clear();//clear vector for first half of data
 	v2.clear();//clear vector for second half of data
@@ -189,18 +191,18 @@ void Staff::deleteAccount(string username, int accountType)
 	//throw away the line that is being deleted
 	for (int i = 0; i < maxIndices; i++)
 	{
-		input >> temp;//throw away the line that is being deleted
+		input >> temp;
 	}
 	//save second half of data to vector
-	int i = index * maxIndices;
+	int i = (index+1) * maxIndices;
 	while (getline(input, temp, ' '))
 	{
 		if ((i % maxIndices) == 0)//if the index field is reached, correct the index
 		{
+			input >> temp;
 			stringstream ss;
-			ss << i;
+			ss << i/maxIndices;
 			v2.push_back(ss.str());
-			v2.push_back(" ");//append space after
 		}
 		else//save regular data
 		{
@@ -226,8 +228,64 @@ void Staff::deleteAccount(string username, int accountType)
 		output << temp;
 	}
 	output.close();
-}
 
+	//---------------------------------------------------------------------------------SAVE AND RECREATE USERNAME FILE---------------------------------
+	input.open(usernameFile);
+	v1.clear();//clear vector for first half of data
+	v2.clear();//clear vector for second half of data
+
+//save first half of data to vector
+	for (int i = 0; i < index; i++)//iterate for every row until the index is reached
+	{
+		for (int j = 0; j < maxUsernameFileIndex; j++)//iterate through columns
+		{
+			input >> temp;
+			v1.push_back(temp);
+			v1.push_back(" ");//append a space after every entry
+		}
+	}
+	//throw away the line that is being deleted
+	for (int i = 0; i < maxUsernameFileIndex; i++)
+	{
+		input >> temp;
+	}
+	//save second half of data to vector
+	int u = (index + 1) * maxUsernameFileIndex;
+	while (getline(input, temp, ' '))
+	{
+		if ((i % maxIndices) == 0)//if the index field is reached, correct the index
+		{
+			input >> temp;
+			stringstream ss;
+			ss << u / maxUsernameFileIndex;
+			v2.push_back(ss.str());
+		}
+		else//save regular data
+		{
+			v2.push_back(temp);
+			v2.push_back(" ");//append space after entry
+		}
+		u++;
+	}
+	input.close();
+
+	//recreate user file
+	output.open(usernameFile);
+	//put all of v1 back into the user file
+	for (int i = 0; i < v1.size(); i++)
+	{
+		temp = v1.at(i);
+		output << temp;
+	}
+	//put all of v2 back into the end user file
+	for (int i = 0; i < v2.size(); i++)
+	{
+		temp = v2.at(i);
+		output << temp;
+	}
+	output.close();
+
+}
 void Staff::createAccount(int accountType)
 {
 	string usernameFile;
@@ -358,9 +416,150 @@ void Staff::createAccount(int accountType)
 	create(userData, objectData, newUsername, p, usernameFile, userFile, dataFile);
 }
 
-void Staff::save()
+Staff Staff::staffLogin(string username, string password)
 {
-	int userIndex = getUserIndex();
+	ifstream input("Staff_Usernames.txt");//open the usernames and password file (order of info is index, username, password)
+	//look for the username
+	int i = 0;
+	string inUsername;
+	while (getline(input, inUsername, ' '))
+	{
+		string inPassword;
+		if ((i % maxUsernameFileIndex) / 1 == 1)//skip every entry that is not usernames 
+			if (inUsername == username)//if the usernames match
+			{
+				input >> inPassword;//take in the next entry into passwords
+				i++;
+				if (inPassword == password)//if the passwords match
+				{
+					int index = i / maxUsernameFileIndex;
+					input.close();
+					string userData[maxIndices];
+					string staffData[staffMaxIndices];
+
+
+					for (int j = 0; j < maxIndices; j++)
+						userData[j] = getUserInfo(/*true,*/ 0, index, j);
+
+
+					for (int j = 0; j < staffMaxIndices; j++)
+						staffData[j] = getStaffInfo(/*true,*/ index, j);
+
+					return Staff(index, userData, staffData);
+				}
+			}
+		i++;
+	}
+	input.close();
+	return Staff();
+}
+string Staff::getStaffInfo(int staffIndex, int fieldIndex)//staff index= file row, field index= file column
+{
+	string data = "ERROR: NO DATA FOUND (getStaffInfo)";//assigned a string to ensure that something is returned
+	//try {
+	ifstream input("Staff_Data.txt");//open the staff data file
+	for (int i = 0; i <= staffIndex; i++)//iterate for every row until the staff index is reached
+	{
+		string unused;//throwaway string to iterate inputs
+		if (i == staffIndex)//if the current index is the desired staff row
+		{
+			for (int j = 0; j < staffMaxIndices; j++)//iterate thrugh columns
+				if (j == fieldIndex)//if current column is the correct field index
+					input >> data;//take input into data string
+				else//if incorrect column, put data into unused datafield;
+					input >> unused;
+		}
+		for (int j = 0; j < staffMaxIndices; j++)//while i does not equal the staff index, throw away each column entry
+			input >> unused;
+	}
+	input.close();
+	//}
+	//catch() FILE ACCESS EXCEPTION (incorrect permissions)
+	//catch() staff index out of range (tries to iterate past end of file)
+
+	return data;
+}
+void Staff::setStaffInfo(int staffIndex, int fieldIndex, string newData)
+
+{
+	vector<string> v1;//vector for first half of data
+	string temp;//string to put input into vector
+	vector<string> v2;//vector for second half of data
+
+//try{
+//Save all of the data into vectors to update it
+	//save first half of data to a vector
+	ifstream input("Staff_Data.txt");
+	for (int i = 0; i <= staffIndex; i++)//iterate for every row until the staff index is reached
+	{
+		for (int j = 0; j < staffMaxIndices; j++)//iterate through columns
+		{
+			if (i != staffIndex)//if it is not the correct index yet, put the data into the vector
+			{
+				input >> temp;
+				v1.push_back(temp);
+				v1.push_back(" ");//append a space after every entry
+			}
+			else if (i == staffIndex)//if it equals the staff index
+			{
+				if (j == fieldIndex)//check if the column index is correct
+					break;//break out of inner loop, the next loop will end
+				else if (j != fieldIndex)
+				{
+					input >> temp;
+					v1.push_back(temp);
+					v1.push_back(" ");//append a space after every entry
+				}
+			}
+
+		}
+	}
+	input.close();
+
+	//save second half of data to a vector
+	int index = 0;
+	input.open("Staff_Data.txt");
+	while (getline(input, temp, ' '))//go through every entry of the file
+	{
+		if (index / staffMaxIndices >= staffIndex)//finds the current staffindex, if it is greater or equal move on
+			if ((index - staffIndex * staffMaxIndices) > fieldIndex)//compares the column indices, if it is greater then move on
+			{
+				v2.push_back(temp);
+				v2.push_back(" ");//append a space after every entry
+			}
+		index++;//iterate index counter after logic has passed
+	}
+	input.close();
+
+
+	//recreate staff data file
+	ofstream output;
+	output.open("Staff_Data.txt");
+	for (int i = 0; i < static_cast<int>(v1.size()); i++)//put all of v1 back into the staff data file
+	{
+		temp = v1.at(i);
+		output << temp;
+	}
+	output << newData;//put the new info into the file
+	output << ' ';
+	for (int i = 0; i < static_cast<int>(v2.size()); i++)//put all of v2 back into the end staff data file
+	{
+		temp = v2.at(i);
+		output << temp;
+	}
+	output.close();
+	//}
+	//catch() ACCESS DENIED: MISSING EDIT PERMISSIONS
+}
+
+void Staff::save(string username)
+{
+	int userIndex = staffGetUserIndex(0, username);
+	if (userIndex == -1)
+	{
+		cout << "Staff Error encountered. Please log out or correct username. Did not successfully save.";
+		return;
+	}
 
 	//save username if it has been updated
 	if (getUsername() != "username")
@@ -393,4 +592,18 @@ void Staff::save()
 	setUserInfo(0, userIndex, 4, getUserID());
 
 	cout << "\nSaved";
+}
+
+void Staff::operator=(Staff newStaff)
+{
+	userIndex = newStaff.getUserIndex();
+	position = newStaff.getPosition();
+	scheduleGroup = newStaff.getScheduleGroup();
+	firstname = newStaff.getFirstname();
+	lastname = newStaff.getLastname();
+	username = newStaff.getUsername();
+	password = newStaff.getPassword();
+	govID = newStaff.getGovID();
+	userID = newStaff.getUserID();
+
 }
