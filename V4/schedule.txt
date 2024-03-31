@@ -1,0 +1,32 @@
+1     - Handover briefing with outgoing staff
+2     - Conduct perimeter checks
+3     - Review and update security logs
+4     - Perform spot checks on surveillance equipment
+5     - Check in with maintenance for any  repairs
+6     - Review and update security logs
+7     - Prepare briefing for incoming staff
+8     - Handover briefing with outgoing staff
+1     - Briefing with shift change staff
+2     - Supervise staff on emergency response procedures
+3     - Collaborate with healthcare providers
+4     - Conduct random patrols of sensitive areas
+5     - Review and update security logs
+6     - Conduct random patrols of sensitive areas
+7     - Conduct cell checks
+8     - Handover briefing with outgoing staff
+1     - Work Assignments
+2     - Vocational Training
+3     - Educational Program
+4     - Counseling
+5     - Free Time
+6     - Recreation
+7     - Yard Time
+8     - Leisure Activities
+1     - Indoor Activities
+2     - Quiet Time
+3     - Work Assignments
+4     - Vocational Training
+5     - Educational Program
+6     - Counseling
+7     - Free Time
+8     - Recreation
