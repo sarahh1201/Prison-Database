@@ -178,19 +178,10 @@ void prisonerView(string& user)
 }
 void staffView(string& user) {
     clearScreen();
-    colourize("Welcome ", 34), colourize(user, 34), colourize("!", 34);
+    colourize("Welcome ", 36), colourize(user, 36), colourize("!", 36);
 
-    int prisoners = 3600;
-    int blocks[2][4] = {{65,   66,   67,  68},
-                        {1000, 1000, 700, 900}};
-
-    cout << "\nNo. Prisoners: " << prisoners << endl; //Number of prisoners
-
-    //Cell Block Information
-    cout << "\nCell Block Capacities" << endl;
-    for (int i = 0; i < 4; i++) {
-        cout << "Block " << (char) blocks[0][i] << ": " << blocks[1][i] << endl;
-    }
+    displayBlocks(); //Cell block info
+    cout << endl;
 
     //Manager selection menu
     allBorders("Select an option:");
@@ -269,19 +260,9 @@ void staffView(string& user) {
     }
 void managerView(string &user) {
         clearScreen();
-        colourize("Welcome ", 34), colourize(user, 34), colourize("!", 34);
+        colourize("Welcome ", 36), colourize(user, 36), colourize("!", 36);
 
-        int prisoners = 3600;
-        int blocks[2][4] = {{65,   66,   67,  68},
-                            {1000, 1000, 700, 900}};
-
-        cout << "\nNo. Prisoners: " << prisoners << endl; //Number of prisoners
-
-        //Cell Block Information
-        cout << "\nCell Block Capacities" << endl;
-        for (int i = 0; i < 4; i++) {
-            cout << "Block " << (char) blocks[0][i] << ": " << blocks[1][i] << endl;
-        }
+        displayBlocks(); //Cell block info
         cout << endl;
 
         //Manager selection menu
