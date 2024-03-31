@@ -10,9 +10,7 @@
 void welcome();
 void prisonerView(string& user, Inmate& object);
 void staffView(string& user,Staff& object);
-void managerView(string& user);
-string getCurrentDateTime();
-void displaySchedule(const string& filename);
+void displaySchedule(string filename, char scheduleType, int startLine, int endLine);
 
 using namespace std;
 
@@ -168,8 +166,7 @@ void prisonerView(string& user, Inmate& object)
         case 2: //View schedule
         {
             clearScreen();
-            string filename = "InmateSchedule.txt";
-            displaySchedule(filename);
+            displaySchedule("Schedule.txt", '3', 0, 0);
 
              cout << "Enter 1 to go back: ";
              int exit;
@@ -178,7 +175,7 @@ void prisonerView(string& user, Inmate& object)
                 while(exit!=1) 
                 {
                     clearScreen();
-                    displaySchedule(filename);
+                    displaySchedule("Schedule.txt", '3', 0, 0);
                     cout << "Invalid input!" <<endl;
                     cout << "Enter 1 to go back: ";
                     cin >> exit;
@@ -252,8 +249,7 @@ void staffView(string& user,Staff& object) {
         case 2: //View schedule
         {
                     clearScreen();
-        string filename = "StaffSchedule.txt";
-        displaySchedule(filename);
+        displaySchedule("Schedule.txt", '0', 0, 0);
 
         cout << "Enter 1 to go back: ";
         int exit;
@@ -262,7 +258,7 @@ void staffView(string& user,Staff& object) {
         while (exit != 1)
         {
             clearScreen();
-            displaySchedule(filename);
+            displaySchedule("Schedule.txt", '0', 0, 0);
             cout << "Invalid input!" << endl;
             cout << "Enter 1 to go back: ";
             cin >> exit;
