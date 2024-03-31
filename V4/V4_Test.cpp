@@ -933,7 +933,7 @@ void staffView(string& user, Staff& object) {//---------------------------------
             string temp;
             while (accType < 1 || accType>3)
             {
-                cout << "\Invalid input. Please try again.";
+                cout << "\nInvalid input. Please try again.";
                 cin >> accType;
             }
             if (accType == 3)
