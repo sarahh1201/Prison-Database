@@ -9,7 +9,7 @@
 
 using namespace std;
 
-void createTextFile()
+void createStaffDataFile()
 {
 	vector<string> v1;
 	for (int i = 0; i < 20; i++)
@@ -54,11 +54,130 @@ void createTextFile()
 	}
 	output.close();
 }
-
-void createUsernameFile()
+void createInmateDataFile(int numberOfAccounts)
 {
+    vector<string> v1;
+    for (int i = 0; i < numberOfAccounts; i++)
+    {
+        stringstream ss;
+        ss << i;
+        v1.push_back(ss.str());
+    }
 
-	vector<string> v1;
+    vector<string> v2;
+    for (int i = 0; i < numberOfAccounts; i++)
+    {
+        stringstream ss;
+        ss << "lawyerName" << i;
+        v2.push_back(ss.str());
+    }
+
+    vector<string> v3;
+    for (int i = 0; i < numberOfAccounts; i++)
+    {
+        stringstream ss;
+        ss << "sentenceLength" << i;
+        v3.push_back(ss.str());
+    }
+
+    vector<string> v4;
+    for (int i = 0; i < numberOfAccounts; i++)
+    {
+        stringstream ss;
+        ss << "probationDate" << i;
+        v4.push_back(ss.str());
+    }
+
+    vector<string> v5;
+    for (int i = 0; i < numberOfAccounts; i++)
+    {
+        stringstream ss;
+        ss << "incarDate" << i;
+        v5.push_back(ss.str());
+    }
+
+    vector<string> v6;
+    for (int i = 0; i < numberOfAccounts; i++)
+    {
+        stringstream ss;
+        ss << "cellNum" << i;
+        v6.push_back(ss.str());
+    }
+
+    vector<string> v7;
+    for (int i = 0; i < numberOfAccounts; i++)
+    {
+        stringstream ss;
+        ss << "cellBlock" << i;
+        v7.push_back(ss.str());
+    }
+
+    vector<string> v8;
+    for (int i = 0; i < numberOfAccounts; i++)
+    {
+        stringstream ss;
+        ss << "roommateID" << i;
+        v8.push_back(ss.str());
+    }
+
+    vector<string> v9;
+    for (int i = 0; i < numberOfAccounts; i++)
+    {
+        stringstream ss;
+        if (i % 2 != 0)//uneven index is assigned schedule group A
+            ss << "A" << i;
+        else
+            ss << "B" << i;
+        v9.push_back(ss.str());
+    }
+
+    string temp;
+
+    ofstream output;
+    output.open("Inmate_Data.txt");
+    for (int i = 0; i < static_cast<int>(v1.size()); i++)//put vectors into file
+    {
+        temp = v1.at(i);
+        output << temp;
+        output << ' ';
+
+        temp = v2.at(i);
+        output << temp;
+        output << ' ';
+
+        temp = v3.at(i);
+        output << temp;
+        output << ' ';
+
+        temp = v4.at(i);
+        output << temp;
+        output << ' ';
+
+        temp = v5.at(i);
+        output << temp;
+        output << ' ';
+
+        temp = v6.at(i);
+        output << temp;
+        output << ' ';
+
+        temp = v7.at(i);
+        output << temp;
+        output << ' ';
+
+        temp = v8.at(i);
+        output << temp;
+        output << ' ';
+
+        temp = v9.at(i);
+        output << temp;
+        output << ' ';
+    }
+    output.close();
+}
+void createUsernameFiles()
+{
+	vector<string> v1;//index
 	for (int i = 0; i < 20; i++)
 	{
 		stringstream ss;
@@ -66,7 +185,7 @@ void createUsernameFile()
 		v1.push_back(ss.str());
 	}
 
-	vector<string> v2;
+	vector<string> v2;//username
 	for (int i = 0; i < 20; i++)
 	{
 		stringstream ss;
@@ -74,7 +193,7 @@ void createUsernameFile()
 		v2.push_back(ss.str());
 	}
 
-	vector<string> v3;
+	vector<string> v3;//password
 	for (int i = 0; i < 20; i++)
 	{
 		stringstream ss;
@@ -82,10 +201,9 @@ void createUsernameFile()
 		v3.push_back(ss.str());
 	}
 
-
 	string temp;
 
-	ofstream output;
+	ofstream output;//staff username file
 	output.open("Staff_Usernames.txt");
 	for (int i = 0; i < static_cast<int>(v1.size()); i++)//put into file rotating vectors
 	{
@@ -102,8 +220,25 @@ void createUsernameFile()
 		output << ' ';
 	}
 	output.close();
-}
 
+    output.open("Inmate_Usernames.txt");//inmate username file
+    for (int i = 0; i < static_cast<int>(v1.size()); i++)//put into file rotating vectors
+    {
+        temp = v1.at(i);
+        output << temp;
+        output << ' ';
+
+        temp = v2.at(i);
+        output << 'I';//inmate username template is Iname#
+        output << temp;
+        output << ' ';
+
+        temp = v3.at(i);
+        output << temp;
+        output << ' ';
+    }
+    output.close();
+}
 void createUserFile(int userFileNumber)
 {
 	string filename;
@@ -188,7 +323,6 @@ void createUserFile(int userFileNumber)
 	output.close();
 }
 
-
 void displaySchedule(string filename)
 {
     cout << "\ndisplaySchedule to be implemented" << endl;
@@ -203,7 +337,7 @@ void prisonerView(string& user, Inmate& object)
 
     //Manager selection menu
     cout << "\nSelect an option: " << endl;
-    cout << "1. Prisoner info";
+    cout << "1. Personal info";
     cout << "\n2. View schedule"
         << "\n3. Logout"
         << endl;
@@ -223,9 +357,20 @@ void prisonerView(string& user, Inmate& object)
     case 1: //Personal info
     {
         clearScreen();
-        //Function
-
-        cout << "Enter 1 to go back: ";
+        cout << "Account Information"
+            << "\n1. Username: " << user
+            << "\n2. First Name:" << object.getFirstname()
+            << "\n3. Last Name:" << object.getLastname()
+            << "\n4. Government ID: " << object.getGovID()
+            << "\n5. User ID:" << object.getUserID()
+            << "\n6. Lawyer Name:" << object.getLawyerName()
+            << "\n7. Probation Date:" << object.getProbationDate()
+            << "\n8. Incarceration Date:" << object.getIncarDate()
+            << "\n9. Cell Number:" << object.getCellNum()
+            << "\n10. Cell Block:" << object.getCellBlock()
+            << "\n11. Roommate ID:" << object.getRoommateID()
+            << "\n12. Schedule Group:" << object.getScheduleGroup()
+            << "\nEnter 1 to return" << endl;
         int exit;
         cin >> exit;
 
@@ -279,7 +424,7 @@ void prisonerView(string& user, Inmate& object)
     }
     }
 }
-void staffView(string& user, Staff& object) {
+void staffView(string& user, Staff& object) {//-------------------------------------------------STAFF VIEW-------------------------------
     clearScreen();
     colourize("Welcome ", 34), colourize(user, 34), colourize("!", 34);
 
@@ -314,7 +459,7 @@ void staffView(string& user, Staff& object) {
     }
 
     switch (option) {
-    case 1: //----------------------------Prisoner info
+    case 1: //----------------------------Prisoner info-------------------------------------------NEEDS TO BE COMPLETED
     {
         clearScreen();
         //Call prisoner function
@@ -401,12 +546,14 @@ void staffView(string& user, Staff& object) {
             << "\n1. Edit Personal Data"
             << "\n2. Edit Inmate Data"
             << "\n3. Edit Staff Data"
-            << "\n4. Return" << endl;
+            << "\n4. Delete an account"
+            << "\n5. Create an account"
+            << "\n6. Return" << endl;
 
         cout << "Option: ";
         cin >> option;
 
-        while (option != 1 && option != 2 && option != 3 && option != 4) {
+        while (option<1||option>6) {
             cout << "Invalid input. Please enter a valid option. " << endl;
             cin >> option;
         }
@@ -501,19 +648,19 @@ void staffView(string& user, Staff& object) {
                 {        cout << "\nWould you like to save any changes? (y/n)" << endl;
                 cin >> ans;
                 while (ans != 'y' && ans != 'n' && ans != 'Y' && ans != 'N')
-                {
+                    {
                     cout << "\nInvalid Input: Please enter again." << endl;
                     cin >> ans;
-                }
-                if (ans == 'y' || ans == 'Y')
-                {object.save();}
+                    }
+                    if (ans == 'y' || ans == 'Y')
+                    {object.save(user);}
+
                     clearScreen();
                     staffView(user, object);
                     break;
                 }
                 }
-                break;
-            } while (ans != 'y' || ans != 'Y' || ans!='n' || ans!='N');
+            } while (ans != 'y' && ans != 'Y' && ans!='n' && ans!='N');
         }
         case 2: //Edit inmate data
         {
@@ -743,7 +890,45 @@ void staffView(string& user, Staff& object) {
                 cout << "\nUsername does not exist. " << endl;
             break;
         }
-        case 4: //Return to staff view
+        case 4://delete an account
+        {
+            clearScreen();
+            cout << "Enter the type of account you are deleting. (1: Inmate, 2: Staff 3: Exit): ";
+            int accType;
+            cin >> accType;
+            while(accType>3||accType<1)
+            {
+                cout << "\nInvalid input. Please try again: ";
+                cin >> accType;
+            }
+            if (accType == 3)
+                staffView(user, object);
+
+            cout << "\nEnter the username of the account: ";
+                string deleteAcc;
+                cin >> deleteAcc;
+
+                cout << "Are you sure you want to delete " << deleteAcc << "? (y/n)";
+                char ans;
+                cin >> ans;
+
+                while (ans != 'y' && ans != 'n' && ans != 'Y' && ans != 'N')
+                {
+                    cout << "\nInvalid Input: Please enter again." << endl;
+                    cin >> ans;
+                }
+                if (ans == 'y' || ans == 'Y')
+                {
+                    object.deleteAccount(deleteAcc, (accType - 1));
+                }
+                staffView(user, object);
+                break;
+        }
+        case 5://create an account
+        {
+
+        }
+        case 6: //Return to staff view
         {
             clearScreen();
             staffView(user, object);
@@ -945,11 +1130,13 @@ void managerView(string& user) {
 int main()
 {
     //testing functions
-		createTextFile();
+        createStaffDataFile();
+        createInmateDataFile(20);
 		cout << "Text File" << endl;
-		createUsernameFile();
+		createUsernameFiles();
 		cout << "Username File" << endl;
 		createUserFile(0);
+        createUserFile(1);
 		cout << "User File" << endl;
 		Staff staff1;
 		cout << "Staff object" << endl;
@@ -1018,19 +1205,38 @@ int main()
                 {
                     Inmate user;
                     user = user.inmateLogin(name, password);
-                    prisonerView(name, user);
+                    if(user.getUserID()!="erroruserID")
+                        prisonerView(name, user);
+                    cout << "\nIncorrect password. Enter a number to continue.";
+                    int cont;
+                    cin >> cont;
+                    clearScreen();
+                    clearScreen();
+                    break;
                 }
                 else if (view == 2)
                 {
                     Staff user;
                     user = user.staffLogin(name, password);
-                    staffView(name, user);
+                    if (user.getUserID() != "erroruserID")
+                        staffView(name, user);
+                    cout << "\nIncorrect password. Enter a number to continue.";
+                    int cont;
+                    cin >> cont;
+                    clearScreen();
+                    break;
                 }
                 else if (view == 3)
                 {
                     Staff user;
                     user = user.staffLogin(name, password);
-                    managerView(name);
+                    if (user.getUserID() != "erroruserID")
+                        managerView(name);
+                    cout << "\nIncorrect password. Enter a number to continue.";
+                    int cont;
+                    cin >> cont;
+                    clearScreen();
+                    break;
                 }
 
                 break;
