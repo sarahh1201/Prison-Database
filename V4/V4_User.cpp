@@ -143,7 +143,7 @@ string User::staffGetUsername(int userFileNumber, int memberIndex)
 
 	return data;
 }
-int User::staffGetUserIndex(int userFileNumber, string data)
+int User::staffGetUserIndex(int userFileNumber, string user)
 {
 	string usernameFile;
 	switch (userFileNumber)//decide which file to pull from
@@ -165,7 +165,7 @@ int User::staffGetUserIndex(int userFileNumber, string data)
 	while (getline(input, inUsername, ' '))
 	{
 		if ((position % maxUsernameFileIndex) == 1)//skip every entry that is not usernames 
-			if (inUsername == username)//if the usernames match
+			if (inUsername == user)//if the usernames match
 			{
 				return position / maxUsernameFileIndex;
 			}
@@ -466,19 +466,20 @@ bool User::newUsername(int userFileNumber, string username)//return true if user
 
 	string inUsername;
 	//find username
-	bool match = false;
+	bool match = true;
 	ifstream input(usernameFile);//open the usernames and password file (order of info is index, username, password)
 	int position = 0;
-	int index = 0;
 	while (getline(input, inUsername, ' '))
 	{
 		if ((position % maxUsernameFileIndex) == 1)//skip every entry that is not usernames 
 			if (inUsername == username)//if the usernames match
 			{
-				match = true;//set match to true to allow loop to continue once
+				input.close();
+				match = false;//set match to true to allow loop to continue once
 			}
 		position++;
 	}
+	input.close();
 	return match;
 }
 
