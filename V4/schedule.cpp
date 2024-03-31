@@ -47,7 +47,7 @@ void displaySchedule(string filename, char scheduleType, int startLine, int endL
     if (file.is_open()) {
         // header columns with ANSI codes
         cout << "-------------------------------------------------------------" << endl;
-        cout << "| \033[1;36mHour\033[0m   | \033[1;36mTask\033[0m                                        |" << endl;
+        cout << "| \033[1;36mHour\033[0m   | \033[1;36mTask\033[0m                                        |" << endl;// display header
         cout << "-------------------------------------------------------------" << endl;
 
         // read file -- in terms if lines
@@ -63,12 +63,14 @@ void displaySchedule(string filename, char scheduleType, int startLine, int endL
             if (count > endLine) {
                 break;
             }
-            // hour and task information from the line and display with ANSI codes
+            // hour and task information from the line and display with ANSI codes 
+            // convert string into int
             int hour = stoi(line.substr(0, 2));
+            // display with ANSI color codes
             cout << "| \033[3m" << setw(5) << left << hour << "\033[0m | \033[1;33m" << line.substr(8) << "\033[0m |"
                  << endl;
             cout << "-------------------------------------------------------------" << endl;
-            count++;
+            count++; // loop until all desired lines of the txt are displayed 
         }
 
         // close file
