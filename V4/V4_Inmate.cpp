@@ -31,6 +31,7 @@ Inmate::Inmate()
 	roommateID = "errorRoommateID";
 	scheduleGroup = "errorScheduleGroup";
 }
+
 void Inmate::save()
 {
 
@@ -73,6 +74,46 @@ void Inmate::save()
 	setUserInfo(0, userIndex, 4, getUserID());
 
 	cout << "\nSaved";
+}
+
+Inmate Inmate::inmateLogin(string username, string password)
+{
+	ifstream input("Inmate_Usernames.txt");//open the usernames and password file (order of info is: index, username, password)
+	//look for the username
+	int i = 0;
+	string inUsername;
+	while (getline(input, inUsername, ' '))
+	{
+
+		string inPassword;
+		if ((i % maxUsernameFileIndex) / 1 == 1)//skip every entry that is not usernames 
+			if (inUsername == username)//if the usernames match
+			{
+				input >> inPassword;//take in the next entry into passwords
+				i++;
+				//try{ make the below a compare function that throws the excpetion
+				if (inPassword == password)//if the passwords match
+				{
+					int index = i / maxUsernameFileIndex;
+					input.close();
+					string userData[maxIndices];
+					string inmateData[inmateMaxIndices];
+
+					for (int j = 0; j < maxIndices; j++)
+						userData[j] = getUserInfo(0, index, j);
+
+					for (int j = 0; j < inmateMaxIndices; j++)
+						inmateData[j] = getInmateInfo(index, j);
+					
+					return Inmate(index, userData, inmateData);
+				}
+				//}
+				//catch() PASSWORDS DONT MATCH
+			}
+		i++;
+	}
+	input.close();
+	return Inmate();
 }
 
 //accessors
