@@ -84,7 +84,6 @@ Inmate Inmate::inmateLogin(string username, string password)
 	string inUsername;
 	while (getline(input, inUsername, ' '))
 	{
-
 		string inPassword;
 		if ((i % maxUsernameFileIndex) / 1 == 1)//skip every entry that is not usernames 
 			if (inUsername == username)//if the usernames match
@@ -94,6 +93,7 @@ Inmate Inmate::inmateLogin(string username, string password)
 				//try{ make the below a compare function that throws the excpetion
 				if (inPassword == password)//if the passwords match
 				{
+					cout << "password match";
 					int index = i / maxUsernameFileIndex;
 					input.close();
 					string userData[maxIndices];
