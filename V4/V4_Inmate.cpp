@@ -93,7 +93,6 @@ Inmate Inmate::inmateLogin(string username, string password)
 				//try{ make the below a compare function that throws the excpetion
 				if (inPassword == password)//if the passwords match
 				{
-					cout << "password match";
 					int index = i / maxUsernameFileIndex;
 					input.close();
 					string userData[maxIndices];
