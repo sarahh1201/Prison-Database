@@ -365,10 +365,10 @@ void Staff::createAccount(int accountType)
 		userFile += "Inmate_Users.txt";
 		dataFile += "Inmate_Data.txt";
 		inmateCount++;
-		userData[0] = inmateCount - 1;
 		stringstream ss;
 		ss << (inmateCount - 1);
-		objectData.push_back(ss.str());
+		userData[0] = ss.str();
+
 		cout << "\nPlease enter the inmate's representative's last name: ";
 		cin >> temp;
 		objectData.push_back(temp);
