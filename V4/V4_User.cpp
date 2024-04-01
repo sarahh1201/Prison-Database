@@ -361,7 +361,6 @@ string User::getInmateInfo(int inmateIndex, int fieldIndex)//inmate index= file 
 				if (j == fieldIndex)//if current column is the correct field index
 				{
 					input >> data;//take input into data string
-					cout << data;
 				}
 				else//if incorrect column, put data into unused datafield;
 					input >> unused;
